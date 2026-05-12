@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GREENER</title>
+    <link rel="stylesheet" href="stylez.css" />
+    <link rel="icon" href="assets/img/stolimpico-logo-thick.png" type="image/x-icon" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFL3CGCTSW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-ZFL3CGCTSW', { 'page_title': 'cyberr.html' });
+    </script>
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body, header {
+        background-color: #859c50;
+      }
+
+      body {
+        font-family: monospace;
+        color: #03261c;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      header { min-height: 0; }
+
+      /* ── cyberbody ── */
+      .cyberbody {
+        width: 100%;
+        flex: 1;
+      }
+
+      /* ── channel header ── */
+      .channel-header {
+        padding: 2.5rem 1.5rem 1.25rem;
+        border-bottom: 1px solid #1c1c1c;
+      }
+      .channel-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #2a2a2a;
+        display: block;
+        margin-bottom: 0.4rem;
+      }
+      .channel-name {
+        font-size: 1.1rem;
+        color: #3dffc8;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .channel-name:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      /* ── blocks feed ── */
+      .blocks-feed {
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ── shared block shell ── */
+      .arena-block {
+        padding: 2rem 1.5rem;
+        border-bottom: 1px solid #111;
+      }
+      .arena-block:last-child { border-bottom: none; }
+
+      .block-meta {
+        font-size: 0.55rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #282828;
+        margin-bottom: 1rem;
+      }
+
+      /* ── IMAGE block ── */
+      .type-image .block-img {
+        display: block;
+        width: 100%;
+        max-width: 700px;
+        height: auto;
+        background: #0d0d0d;
+      }
+      .type-image .block-caption {
+        margin-top: 0.6rem;
+        font-size: 0.65rem;
+        color: #3a3a3a;
+        letter-spacing: 0.04em;
+      }
+      .type-image .block-caption-desc {
+        margin-top: 0.25rem;
+        font-size: 0.7rem;
+        color: #053527;
+        line-height: 1.5;
+      }
+
+      /* ── TEXT block ── */
+      .type-text .block-heading {
+        font-size: 0.85rem;
+        color: #3dffc8;
+        letter-spacing: 0.05em;
+        margin-bottom: 1rem;
+        line-height: 1.3;
+      }
+      .type-text .block-body {
+        font-size: 0.78rem;
+        color: #053527;
+        line-height: 1.85;
+        max-width: 640px;
+        white-space: pre-wrap;
+      }
+
+      /* ── LINK block ── */
+      .type-link a.block-link {
+        display: flex;
+        gap: 1.25rem;
+        align-items: flex-start;
+        max-width: 680px;
+        text-decoration: none;
+        color: inherit;
+      }
+      .type-link a.block-link:hover .link-title { text-decoration: underline; }
+      .type-link .link-thumb {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        flex-shrink: 0;
+        display: block;
+        background: #0d0d0d;
+      }
+      .type-link .link-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        padding-top: 0.1rem;
+      }
+      .type-link .link-title {
+        font-size: 0.8rem;
+        color: #3dffc8;
+        letter-spacing: 0.04em;
+        line-height: 1.4;
+      }
+      .type-link .link-desc {
+        font-size: 0.7rem;
+        color: #053527;
+        line-height: 1.55;
+        max-width: 520px;
+      }
+      .type-link .link-source {
+        font-size: 0.58rem;
+        color: #2e2e2e;
+        letter-spacing: 0.08em;
+      }
+
+      /* ── loading / error ── */
+      .state-msg {
+        padding: 3rem 1.5rem;
+        font-size: 0.7rem;
+        color: #2a2a2a;
+        letter-spacing: 0.08em;
+      }
+      .state-msg.loading { animation: pulse 1.2s ease-in-out infinite; }
+      .state-msg.error { color: #8b0000; }
+
+      @keyframes pulse {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.25; }
+      }
+
+      /* ── explore more button ── */
+      .explore-wrap {
+        display: flex;
+        justify-content: center;
+        padding: 2.5rem 1.5rem 2rem;
+        border-top: 1px solid #111;
+      }
+      .explore-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: monospace;
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        color: #5a5a5a;
+        text-decoration: none;
+        border: 1px solid #1e1e1e;
+        padding: 0.55rem 1rem;
+        border-radius: 2px;
+        transition: color 0.15s, border-color 0.15s;
+      }
+      .explore-btn:hover {
+        color: #3dffc8;
+        border-color: #3dffc8;
+      }
+      .explore-btn .arena-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: currentColor;
+        flex-shrink: 0;
+      }
+
+      /* ── footer ── */
+      footer { margin-top: auto; }
+      .footer-icons-link {
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+      }
+      .footer-icons {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 5px;
+        justify-content: center;
+        padding: 10px 0;
+        width: 100%;
+        cursor: pointer;
+      }
+      .footer-icons img {
+        width: 25px;
+        height: auto;
+        object-fit: cover;
+        pointer-events: none;
+      }
+    </style>
+</head>
+<body>
+  <header></header>
+
+  <div class="cyberbody">
+    <div class="channel-header">
+      <span class="channel-label">Are.na channel</span>
+      <a class="channel-name" href="https://www.are.na/stoic-da-poet/cybersolar-grass-is-greener" target="_blank" rel="noopener noreferrer">CyberSolar; Grass is Greener</a>
+    </div>
+    <div class="blocks-feed" id="blocks-feed">
+      <div class="state-msg loading">loading channel_</div>
+    </div>
+  </div>
+
+  <div class="explore-wrap">
+    <a class="explore-btn" href="https://www.are.na/stoic-da-poet/cybersolar-grass-is-greener" target="_blank" rel="noopener noreferrer">
+      <span class="arena-dot"></span>
+      Explore More on Are.na
+    </a>
+  </div>
+
+  <footer>
+    <a href="index.html" class="footer-icons-link">
+      <div class="footer-icons">
+        <img src="assets/img/icons/imac.jpeg" alt="cyber-icon" />
+        <img src="assets/img/icons/solar.jpeg" alt="solar-icon" />
+        <img src="assets/img/icons/turbine.jpeg" alt="grass-icon" />
+      </div>
+    </a>
+  </footer>
+
+  <script>
+    const CHANNEL_SLUG = 'cybersolar-grass-is-greener';
+    const API = `https://api.are.na/v2/channels/${CHANNEL_SLUG}/contents?per=10&page=1&sort=position&direction=desc`;
+
+    function esc(s) {
+      if (s == null) return '';
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    // Are.na v2 API: block.class is "Image" | "Text" | "Link" | "Attachment" | "Media"
+    // block.content is a raw string for Text blocks
+    // block.description is a raw string (may be null)
+    // block.image.display.url is the medium-ish image src
+
+    function imgSrc(block) {
+      // prefer display (medium), fall back to original
+      if (block.image) {
+        if (block.image.display && block.image.display.url) return block.image.display.url;
+        if (block.image.original && block.image.original.url) return block.image.original.url;
+        if (block.image.square && block.image.square.url) return block.image.square.url;
+      }
+      return '';
+    }
+
+    function renderImage(b) {
+      const src = imgSrc(b);
+      const title = b.title || '';
+      const desc = b.description || '';
+      return `<div class="arena-block type-image">
+  <div class="block-meta">image</div>
+  ${src ? `<img class="block-img" src="${esc(src)}" alt="${esc(title)}" loading="lazy" />` : ''}
+  ${title ? `<div class="block-caption">${esc(title)}</div>` : ''}
+  ${desc ? `<div class="block-caption-desc">${esc(desc)}</div>` : ''}
+</div>`;
+    }
+
+    function renderText(b) {
+      const title = b.title || '';
+      // v2 API: content is a plain string
+      const body = typeof b.content === 'string' ? b.content
+                 : (b.content && b.content.plain) ? b.content.plain
+                 : '';
+      return `<div class="arena-block type-text">
+  <div class="block-meta">text</div>
+  ${title ? `<div class="block-heading">${esc(title)}</div>` : ''}
+  ${body ? `<div class="block-body">${esc(body)}</div>` : ''}
+</div>`;
+    }
+
+    function renderLink(b) {
+      const url = (b.source && b.source.url) ? b.source.url : '#';
+      const title = b.title || url;
+      const desc = b.description || '';
+      const thumb = imgSrc(b);
+      const host = (b.source && b.source.provider && b.source.provider.name)
+                   ? b.source.provider.name : '';
+      return `<div class="arena-block type-link">
+  <div class="block-meta">link</div>
+  <a class="block-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">
+    ${thumb ? `<img class="link-thumb" src="${esc(thumb)}" alt="" loading="lazy" />` : ''}
+    <div class="link-body">
+      <span class="link-title">${esc(title)}</span>
+      ${desc ? `<span class="link-desc">${esc(desc)}</span>` : ''}
+      ${host ? `<span class="link-source">${esc(host)}</span>` : ''}
+    </div>
+  </a>
+</div>`;
+    }
+
+    function renderBlock(b) {
+      switch (b.class) {
+        case 'Image':      return renderImage(b);
+        case 'Text':       return renderText(b);
+        case 'Link':       return renderLink(b);
+        case 'Attachment': return renderLink(b);  // treat like link
+        default:           return renderText(b);
+      }
+    }
+
+    async function loadArenaChannel() {
+      const feed = document.getElementById('blocks-feed');
+      try {
+        const res = await fetch(API);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        const blocks = (data.contents || []).slice(0, 10);
+        if (!blocks.length) {
+          feed.innerHTML = '<div class="state-msg error">no blocks found.</div>';
+          return;
+        }
+        feed.innerHTML = blocks.map(renderBlock).join('');
+      } catch (err) {
+        feed.innerHTML = `<div class="state-msg error">could not load channel — ${esc(err.message)}</div>`;
+        console.error(err);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadArenaChannel);
+  </script>
+</body>
+</html>
