@@ -31,6 +31,11 @@
 
       header { min-height: 0; }
 
+      .arena-header {
+        padding: 12px;
+        font-size: 0.8rem;
+      }
+
       /* ── cyberbody ── */
       .cyberbody {
         width: 100%;
@@ -123,26 +128,24 @@
       /* ── LINK block ── */
       .type-link a.block-link {
         display: flex;
-        gap: 1.25rem;
-        align-items: flex-start;
-        max-width: 680px;
+        flex-direction: column;
+        max-width: 700px;
         text-decoration: none;
         color: inherit;
       }
       .type-link a.block-link:hover .link-title { text-decoration: underline; }
       .type-link .link-thumb {
-        width: 90px;
-        height: 90px;
-        object-fit: cover;
-        flex-shrink: 0;
         display: block;
+        width: 100%;
+        max-width: 700px;
+        height: auto;
         background: #0d0d0d;
       }
       .type-link .link-body {
         display: flex;
         flex-direction: column;
         gap: 0.4rem;
-        padding-top: 0.1rem;
+        margin-top: 0.6rem;
       }
       .type-link .link-title {
         font-size: 0.8rem;
@@ -154,7 +157,7 @@
         font-size: 0.7rem;
         color: #3a3a3a;
         line-height: 1.55;
-        max-width: 520px;
+        max-width: 700px;
       }
       .type-link .link-source {
         font-size: 0.58rem;
@@ -236,7 +239,9 @@
     </style>
 </head>
 <body>
-  <header></header>
+  <header class="arena-header">
+    <p>This is an Are.na channel. It is a collection of images and websites gathered around a central topic. Think: multi-media mood board.</p>
+  </header>
 
   <div class="cyberbody">
     <div class="channel-header">
@@ -321,17 +326,22 @@
     function renderLink(b) {
       const url = (b.source && b.source.url) ? b.source.url : '#';
       const title = b.title || url;
-      const desc = b.description || '';
+      let desc = b.description || '';
       const thumb = imgSrc(b);
       const host = (b.source && b.source.provider && b.source.provider.name)
                    ? b.source.provider.name : '';
+      // Truncate desc to 100 chars and add ellipsis if needed
+      let truncatedDesc = desc;
+      if (desc.length > 100) {
+        truncatedDesc = desc.slice(0, 100) + '…';
+      }
       return `<div class="arena-block type-link">
   <div class="block-meta">link</div>
   <a class="block-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">
     ${thumb ? `<img class="link-thumb" src="${esc(thumb)}" alt="" loading="lazy" />` : ''}
     <div class="link-body">
       <span class="link-title">${esc(title)}</span>
-      ${desc ? `<span class="link-desc">${esc(desc)}</span>` : ''}
+      ${truncatedDesc ? `<span class="link-desc">${esc(truncatedDesc)}</span>` : ''}
       ${host ? `<span class="link-source">${esc(host)}</span>` : ''}
     </div>
   </a>

@@ -15,28 +15,47 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   font-family: 'windowsregular', "Courier New", Courier, monospace;
   line-height: 1.6;
   background-color: white;
 }
-header {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  background-color: white;
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('assets/img/bkg/turbine_dsk.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.5; /* Adjust opacity here */
+  z-index: -1;
+  pointer-events: none;
 }
-header img {
-  max-width: 40px;
-  max-height: 40px;
-  margin-right: auto;
-  margin-left: 10px;
-  padding: 5px;
-  border-radius: 99px;
-  /* background-color: #2d2d2d; */
-  /* box-shadow:  4px 4px 7px 0px rgba(0, 0, 0, 0.5); */
+@media (max-width: 768px) {
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: 'windowsregular', "Courier New", Courier, monospace;
+    line-height: 1.6;
+    background-color: white;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('assets/img/bkg/turbine_mbl.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.5; /* Adjust opacity here */
+    z-index: -1;
+    pointer-events: none;
+  }
 }
 #page-title {
   margin-left: 10px; 
