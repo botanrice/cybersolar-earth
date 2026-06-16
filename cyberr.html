@@ -4,15 +4,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CYBER</title>
-    <link rel="stylesheet" href="stylez.css" />
+    <link rel="stylesheet" href="assets/stylez/stylez.css" />
+    <link rel="stylesheet" href="assets/stylez/cyberstylez.css" />
+    <script src="assets/js/menubar.js" defer></script>
     <link rel="icon" href="assets/img/stolimpico-logo-thick.png" type="image/x-icon" />
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFL3CGCTSW"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VE6JTYYWV0"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-ZFL3CGCTSW', { 'page_title': 'cyberr.html' });
+
+      gtag('config', 'G-VE6JTYYWV0', {
+        'page_title': document.title
+      });
     </script>
     <style>
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -236,14 +241,78 @@
         object-fit: cover;
         pointer-events: none;
       }
+      /* ** Stoic Says ** */
+      .stoic-says {
+        display: flex;
+        width: 80%;
+        background-color: white;
+      }
     </style>
 </head>
 <body>
+  <header class="homeheader">
+    <div class="menubar">
+      
+      <div class="menubar-title" id="about-trigger" title="About cybersolar.earth">
+        <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="earth-icon" />
+        <span>cybersolar.earth</span>
+      </div>
+      <div class="menubar-items">
+
+        <div class="menubar-item" data-menu="file">File
+          <div class="dropdown-menu">
+            <div class="dropdown-item" data-action="arena">Open Are.na <span class="dropdown-shortcut">↗</span></div>
+            <div class="dropdown-item" data-action="borice">Open borice.exposed <span class="dropdown-shortcut">↗</span></div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-item" data-action="alias">Make Alias... <span class="dropdown-shortcut">⌘M</span></div>
+            <div class="dropdown-item" data-action="print">Print Desktop... <span class="dropdown-shortcut">⌘P</span></div>
+          </div>
+        </div>
+
+        <div class="menubar-item" data-menu="edit">Edit
+          <div class="dropdown-menu">
+            <div class="dropdown-item disabled">Undo <span class="dropdown-shortcut">⌘Z</span></div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-item" data-action="wallpaper">Change Wallpaper</div>
+            <div class="dropdown-item" data-action="invert">Invert Colors</div>
+            <div class="dropdown-item" data-action="glitch">Glitch Screen <span class="dropdown-shortcut">⌘G</span></div>
+          </div>
+        </div>
+
+        <div class="menubar-item" data-menu="view">View
+          <div class="dropdown-menu">
+            <div class="dropdown-item" data-action="darkmode" id="darkmode-item"><span id="darkmode-label">Dark Mode</span><span class="dropdown-shortcut">⌘D</span></div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-item" data-action="zoomin">Zoom In <span class="dropdown-shortcut">⌘+</span></div>
+            <div class="dropdown-item" data-action="zoomout">Zoom Out <span class="dropdown-shortcut">⌘−</span></div>
+            <div class="dropdown-item" data-action="fullscreen">Full Screen <span class="dropdown-shortcut">⌘F</span></div>
+          </div>
+        </div>
+
+        <div class="menubar-item" data-menu="help">Help
+          <div class="dropdown-menu">
+            <div class="dropdown-item" data-action="about">About cybersolar.earth</div>
+            <div class="dropdown-item" data-action="whatisthis">What is CyberSolar?</div>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-item" data-action="viewsource">View Source... <span class="dropdown-shortcut">↗</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
   <header class="arena-header">
     <p>This is an Are.na channel. It is a collection of images and websites gathered around a central topic. Think: multi-media mood board.</p>
   </header>
 
   <div class="cyberbody">
+
+  <div class="entry-textbox">
+    <label for="entry-note"><img class="menubar-title-img" src="assets/img/icons/earth.png" alt="earth-icon" /></label>
+    <textarea id="entry-note" placeholder="write here...">stoic says...</textarea>
+  </div>
+
     <div class="channel-header">
       <span class="channel-label">Are.na channel</span>
       <a class="channel-name" href="https://www.are.na/stoic-da-poet/netw-rldz" target="_blank" rel="noopener noreferrer">netw🌐rldz</a>
@@ -260,6 +329,93 @@
     </a>
   </div>
 
+  <!-- About Modal -->
+  <div class="modal-overlay" id="about-modal" role="dialog" aria-modal="true" aria-label="About cybersolar.earth">
+    <div class="modal-window">
+      <div class="modal-titlebar">
+        <div class="modal-titlebar-text">
+          <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="" />
+          About cybersolar.earth
+        </div>
+        <div class="modal-close-btn" id="modal-close" aria-label="Close">✕</div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-top-row">
+          <div class="modal-img-box">
+            <img src="assets/img/bkg/turbine_dsk.jpeg" alt="turbine background" />
+          </div>
+          <div class="modal-info">
+            <img class="modal-app-icon" src="assets/img/icons/earth.png" alt="cybersolar icon" />
+            <div class="modal-app-name">cybersolar.earth 1.0</div>
+          </div>
+        </div>
+        <hr class="modal-divider" />
+        <div class="modal-details">
+          <p>Built by:&nbsp; Bo Rice</p>
+          <p>Sections Live:&nbsp; 3</p>
+          <p>™ &amp; © cybersolar.earth, 2024–2026</p>
+        </div>
+        <hr class="modal-divider" />
+        <div class="modal-bars">
+          <div class="modal-bar-row">
+            <div class="modal-bar-label">
+              <img src="assets/img/icons/imac_nobkg.png" alt="" /> cyber
+            </div>
+            <div class="modal-bar-track"><div class="modal-bar-fill" style="width:75%"></div></div>
+          </div>
+          <div class="modal-bar-row">
+            <div class="modal-bar-label">
+              <img src="assets/img/icons/solar2.png" alt="" /> solar
+            </div>
+            <div class="modal-bar-track"><div class="modal-bar-fill" style="width:60%"></div></div>
+          </div>
+          <div class="modal-bar-row">
+            <div class="modal-bar-label">
+              <img src="assets/img/icons/turbine.jpeg" alt="" /> grass is greener
+            </div>
+            <div class="modal-bar-track"><div class="modal-bar-fill" style="width:45%"></div></div>
+          </div>
+        </div>
+        <div class="modal-ok-row">
+          <button class="modal-ok-btn" id="modal-ok">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast-msg" id="toast"></div>
+
+  <!-- Help / What is CyberSolar Modal -->
+  <div class="modal-overlay" id="help-modal" role="dialog" aria-modal="true" aria-label="What is CyberSolar?">
+    <div class="modal-window">
+      <div class="modal-titlebar">
+        <div class="modal-titlebar-text">
+          <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="" />
+          What is CyberSolar?
+        </div>
+        <div class="modal-close-btn" id="help-modal-close" aria-label="Close">✕</div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-details">
+          <p><strong>CyberSolar; Grass is Greener</strong> is a music &amp; web-rooted multi-modal art project.</p>
+          <p>It explores the fringes of climate psychology, poetic tech, stoicism, and subversive community building.</p>
+          <p>Navigate the desktop icons to enter each channel. The site evolves daily.</p>
+        </div>
+        <hr class="modal-divider" />
+        <div class="modal-details" style="font-size:11px; color:#666;">
+          <p>File &nbsp;→&nbsp; social portals &amp; page export</p>
+          <p>Edit &nbsp;→&nbsp; mutate the canvas</p>
+          <p>View &nbsp;→&nbsp; alter perception</p>
+          <p>Help &nbsp;→&nbsp; you are here</p>
+        </div>
+        <div class="modal-ok-row">
+          <button class="modal-ok-btn" id="help-modal-ok">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <a href="index.html" class="footer-icons-link">
       <div class="footer-icons">
@@ -271,6 +427,7 @@
   </footer>
 
   <script>
+    // ── Are.na Channel Loading ──
     const CHANNEL_SLUG = 'netw-rldz';
     const API = `https://api.are.na/v2/channels/${CHANNEL_SLUG}/contents?per=10&page=1&sort=position&direction=desc`;
 

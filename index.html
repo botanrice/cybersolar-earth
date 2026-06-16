@@ -4,17 +4,19 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>cybersolar.earth</title>
-    <link rel="stylesheet" href="stylez.css" />
+    <link rel="stylesheet" href="assets/stylez/stylez.css" />
+    <link rel="stylesheet" href="assets/stylez/cyberstylez.css" />
+    <script src="assets/js/menubar.js" defer></script>
     <link href="./out.css" rel="stylesheet">
     <link rel="icon" href="assets/img/icons/turbine.jpeg" type="image/x-icon" />
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFL3CGCTSW"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VE6JTYYWV0"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
 
-      gtag('config', 'G-ZFL3CGCTSW', {
+      gtag('config', 'G-VE6JTYYWV0', {
         'page_title': document.title
       });
     </script>
@@ -109,60 +111,29 @@
         background: rgba(255, 255, 255, 0.85);
         border: 1px solid rgba(0, 0, 0, 0.3);
       }
-      /* –– Entry Textbox ––––––––––––––––––––– */
-      .entry-textbox {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        position: fixed;
-        right: 16px;
-        bottom: 16px;
-        width: min(300px, calc(100vw - 32px));
-        padding: 10px;
-        background: rgba(210, 199, 162, 0.9);
-        border: 1px solid rgba(187, 209, 255, 0.5);
-        box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35);
-        z-index: 5;
-        font-size: 0.95rem;
+      .external-link-wrapper {
+        max-height: inherit;
       }
-
-      .entry-textbox textarea {
-        width: 100%;
-        min-height: 135px;
-        resize: none;
-        font: inherit;
-        font-size: 0.95rem;
-        box-sizing: border-box;
-        color: rgba(35, 28, 19, 1);
-        /* background:  rgba(243, 246, 242, 1);; */ /* concourse bkg color */
-        background: rgba(210, 199, 162, 0.9);
-        border: 1px solid rgba(187, 209, 255, 0.4);
-      }
-
-      .entry-textbox textarea::placeholder {
-        color: rgba(238, 244, 255, 0.65);
-      }
-
-      .entry-textbox label {
+      .external-link-indicator {
+        position: relative; /* fix? */
+        bottom: 16px; /* fix? */
+        right: -44px; /* fix? */
+        z-index: 1;/* fix? */
+        width: 16px;
+        height: 16px;
+        background: white;
+        border: 1px solid #000;
+        border-radius: 2px;
         display: flex;
         align-items: center;
+        justify-content: center;
       }
-      @media (max-width: 768px) {
-        .entry-textbox {
-          right: 16px;
-          bottom: calc(16px + env(safe-area-inset-bottom, 0px));
-          width: min(200px, calc(100vw - 32px));
-          font-size: 0.9rem;
-          background-color: #FCFAF0;
-        }
 
-        .entry-textbox textarea {
-          min-height: 90px;
-          font-size: 0.9rem;
-          background-color: #FCFAF0;
-          color: #141414;
-        }
+      .external-link-indicator svg {
+        width: 12px;
+        height: 12px;
       }
+      
 
       /* –– About Modal ––––––––––––––––––––– */
       .modal-overlay {
@@ -524,6 +495,18 @@
     </header>
     <div class="desktop-content">
       <div class="desktop-icons">
+        <a class="icon-link-vert" href="https://youtu.be/00cFvPZUE90?si=-qaAN01puUvErBlo" target="_blank">
+          <div class="external-link-wrapper">
+            <img class="" src="assets/img/icons/djay.png" alt="djay-icon" />
+            <div class="external-link-indicator">
+              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M13 3L13 8M13 3H8M13 3L7 9" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </div>
+          </div>
+          <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/imac_mvmt.mp4" muted loop autoplay></video> -->
+          <span>demo set</span>
+        </a>
         <a class="icon-link-vert" href="cyberr.html">
           <img class="" src="assets/img/icons/imac_nobkg.png" alt="cyber-icon" />
           <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/imac_mvmt.mp4" muted loop autoplay></video> -->
