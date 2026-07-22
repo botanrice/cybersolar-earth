@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>palettes — cybersolar.earth</title>
+    <link rel="stylesheet" href="assets/stylez/stylez.css" />
+    <link href="./out.css" rel="stylesheet" />
+    <link rel="icon" href="assets/img/icons/turbine.jpeg" type="image/x-icon" />
+    <style>
+      body {
+        background: #fff;
+        padding: 32px 24px 64px;
+        align-items: flex-start;
+      }
+      body::before {
+        display: none;
+      }
+
+      h1 {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 13px;
+        font-weight: normal;
+        letter-spacing: 0.08em;
+        color: #888;
+        margin-bottom: 32px;
+      }
+
+      .palette-section {
+        margin-bottom: 40px;
+        width: 100%;
+        max-width: 640px;
+      }
+
+      .palette-section-label {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 11px;
+        color: #aaa;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+        border-bottom: 1px solid #ebebeb;
+        padding-bottom: 5px;
+      }
+
+      .palette-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .swatch {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 7px;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .swatch-circle {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 1px solid rgba(0,0,0,0.10);
+        position: relative;
+        transition: transform 0.1s;
+        flex-shrink: 0;
+      }
+
+      .swatch:hover .swatch-circle {
+        transform: scale(1.08);
+      }
+
+      .copy-icon {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: rgba(0,0,0,0.28);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.12s;
+        pointer-events: none;
+      }
+
+      .copy-icon svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .swatch:hover .copy-icon {
+        opacity: 1;
+      }
+
+      .swatch-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1px;
+      }
+
+      .swatch-name {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 10px;
+        color: #555;
+        letter-spacing: 0.03em;
+        text-align: center;
+        user-select: none;
+      }
+
+      .swatch-hex {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 11px;
+        color: #222;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .swatch-rgba {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 9.5px;
+        color: #aaa;
+        letter-spacing: 0.02em;
+        white-space: nowrap;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      /* copied badge */
+      .copied-badge {
+        position: absolute;
+        top: -22px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #0a0a0a;
+        color: #bddf63;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 10px;
+        padding: 2px 7px;
+        border: 1px solid #bddf63;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 10;
+        transition: opacity 0.15s, top 0.15s;
+      }
+
+      .copied-badge.show {
+        opacity: 1;
+        top: -28px;
+      }
+
+      a.back-link {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 11px;
+        color: #888;
+        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 28px;
+      }
+      a.back-link:hover {
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <a class="back-link" href="index.html">← index</a>
+    <h1>palettes.html</h1>
+
+    <div class="palette-section">
+      <div class="palette-row" id="palette-main"></div>
+    </div>
+
+    <script>
+      const palette = [
+        {"name":"Platinum","hex":"F1F1F3","rgb":[241,241,243]},
+        {"name":"Baby Blue Ice","hex":"80B7FD","rgb":[128,183,253]},
+        {"name":"Cool Horizon","hex":"7AABFD","rgb":[122,171,253]},
+        {"name":"Cornflower Blue","hex":"599EFD","rgb":[89,158,253]},
+        {"name":"Cool Horizon","hex":"67A4FC","rgb":[103,164,252]},
+        {"name":"Blue Grey","hex":"6A93BE","rgb":[106,147,190]},
+        {"name":"Muted Teal","hex":"97CAAC","rgb":[151,202,172]},
+        {"name":"Dark Slate Grey","hex":"355054","rgb":[53,80,84]},
+        {"name":"Charcoal Brown","hex":"332F26","rgb":[51,47,38]},
+      ];
+
+      function fallbackCopy(value) {
+        const ta = document.createElement('textarea');
+        ta.value = value;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+
+      function copyHex(hex, swatch) {
+        const value = '#' + hex;
+        const doShow = () => {
+          const badge = swatch.querySelector('.copied-badge');
+          badge.classList.add('show');
+          clearTimeout(badge._t);
+          badge._t = setTimeout(() => badge.classList.remove('show'), 1600);
+        };
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(value).then(doShow).catch(() => {
+              fallbackCopy(value);
+              doShow();
+            });
+          } else {
+            fallbackCopy(value);
+            doShow();
+          }
+        } catch (e) {
+          fallbackCopy(value);
+          doShow();
+        }
+      }
+
+      const container = document.getElementById('palette-main');
+      palette.forEach(({ name, hex, rgb }) => {
+        const rgba = `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 1)`;
+        const hexDisplay = '#' + hex;
+
+        const swatch = document.createElement('div');
+        swatch.className = 'swatch';
+
+        const circle = document.createElement('div');
+        circle.className = 'swatch-circle';
+        circle.style.background = hexDisplay;
+
+        const copyIcon = document.createElement('div');
+        copyIcon.className = 'copy-icon';
+        copyIcon.innerHTML = `<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="5" y="5" width="8" height="9" rx="1" stroke="white" stroke-width="1.3"/>
+          <path d="M3 11V3h8" stroke="white" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>`;
+        circle.appendChild(copyIcon);
+
+        const info = document.createElement('div');
+        info.className = 'swatch-info';
+
+        const nameLabel = document.createElement('div');
+        nameLabel.className = 'swatch-name';
+        nameLabel.textContent = name;
+
+        const hexLabel = document.createElement('div');
+        hexLabel.className = 'swatch-hex';
+        hexLabel.textContent = hexDisplay;
+
+        const rgbaLabel = document.createElement('div');
+        rgbaLabel.className = 'swatch-rgba';
+        rgbaLabel.textContent = rgba;
+
+        info.appendChild(nameLabel);
+        info.appendChild(hexLabel);
+        info.appendChild(rgbaLabel);
+
+        const badge = document.createElement('div');
+        badge.className = 'copied-badge';
+        badge.textContent = 'copied!';
+
+        swatch.appendChild(badge);
+        swatch.appendChild(circle);
+        swatch.appendChild(info);
+
+        swatch.addEventListener('click', () => copyHex(hex, swatch));
+
+        container.appendChild(swatch);
+      });
+    </script>
+  </body>
+</html>
