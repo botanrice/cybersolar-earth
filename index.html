@@ -456,6 +456,7 @@
               <div class="dropdown-item" data-action="arena">Open Are.na <span class="dropdown-shortcut">↗</span></div>
               <div class="dropdown-item" data-action="borice">Open borice.exposed <span class="dropdown-shortcut">↗</span></div>
               <div class="dropdown-divider"></div>
+              <div class="dropdown-item" data-action="viewpalette">View Palette</div>
               <div class="dropdown-item" data-action="alias">Make Alias... <span class="dropdown-shortcut">⌘M</span></div>
               <div class="dropdown-item" data-action="print">Print Desktop... <span class="dropdown-shortcut">⌘P</span></div>
             </div>
@@ -521,6 +522,10 @@
           <img class="" src="assets/img/icons/turbine.jpeg" alt="grass-icon" />
           <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/turbine_mvmt.mp4" muted loop autoplay></video> -->
           <span>grass is greener</span>
+        </a>
+        <a class="icon-link-vert" href="film.html">
+          <img src="assets/img/film/stoputer.jpg" alt="film-icon" style="max-width: 60px; max-height: 120px; height: 100px;"/>
+          <span>gallery</span>
         </a>
       </div>
     </div>
@@ -611,6 +616,26 @@ This site is evolving on a daily basis. At present, it is an early look into the
 
     <!-- Toast -->
     <div class="toast-msg" id="toast"></div>
+
+    <!-- Palette Modal -->
+    <div class="modal-overlay" id="palette-modal" role="dialog" aria-modal="true" aria-label="View Palette">
+      <div class="modal-window" style="width: min(600px, calc(100vw - 32px));">
+        <div class="modal-titlebar">
+          <div class="modal-titlebar-text">
+            <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="" />
+            palettes.html
+          </div>
+          <div class="modal-close-btn" id="palette-modal-close" aria-label="Close">✕</div>
+        </div>
+        <div style="padding: 0; line-height: 0;">
+          <iframe
+            src="palettes.html"
+            style="width: 100%; height: 420px; border: none; display: block; background: #fff;"
+            title="Palette"
+          ></iframe>
+        </div>
+      </div>
+    </div>
 
     <!-- Help / What is CyberSolar Modal -->
     <div class="modal-overlay" id="help-modal" role="dialog" aria-modal="true" aria-label="What is CyberSolar?">
@@ -784,6 +809,9 @@ This site is evolving on a daily basis. At present, it is an early look into the
               document.exitFullscreen();
             }
             break;
+          case 'viewpalette':
+            document.getElementById('palette-modal').classList.add('open');
+            break;
           case 'about':
             openModal();
             break;
@@ -795,6 +823,11 @@ This site is evolving on a daily basis. At present, it is an early look into the
             break;
         }
       }
+
+      // –– Palette Modal ––
+      const paletteModal = document.getElementById('palette-modal');
+      document.getElementById('palette-modal-close').addEventListener('click', () => paletteModal.classList.remove('open'));
+      paletteModal.addEventListener('click', e => { if (e.target === paletteModal) paletteModal.classList.remove('open'); });
 
       // –– Help Modal ––
       const helpModal = document.getElementById('help-modal');
