@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>cybersolar.earth</title>
+    <title>music — cybersolar.earth</title>
     <link rel="stylesheet" href="assets/stylez/stylez.css" />
     <link rel="stylesheet" href="assets/stylez/cyberstylez.css" />
     <script src="assets/js/menubar.js" defer></script>
@@ -47,6 +47,7 @@
         cursor: pointer;
         gap: 5px;
         user-select: none;
+        text-decoration: none;
       }
       .menubar-title-img {
         width: 20px;
@@ -68,74 +69,133 @@
       }
       .menubar-item:hover {
         border: 1px solid #000080;
-        /* background: linear-gradient(to bottom, #000080, #1084d7); */
         background: linear-gradient(to bottom, #bddf63, #5c6929);
         color: #ffffff;
       }
-      .desktop-content {
+
+      /* –– Music content ––––––––––––––––––––– */
+      .music-content {
         width: 100%;
-      }
-      .desktop-icons {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 25px;
-        justify-content: flex-start;
-        max-width: 600px;
-        padding: 20px;
-        text-align: left;
-        line-height: 1;
-      }
-      .icon-link-vert {
-        max-width: 60px;
-        max-height: 60px;
         display: flex;
         flex-direction: column;
-        gap: 10px;
-        margin-bottom: 25px;
+        align-items: flex-start;
+        padding: 28px 20px 80px;
       }
-      .icon-link-vert img {
-        max-width: 60px;
-        max-height: 60px;
-        position: relative;
-        z-index: 1;
-        width: 100%;
-        height: 100%;
+      .music-icon {
+        width: 72px;
+        height: 72px;
+        object-fit: cover;
+        margin-bottom: 24px;
       }
-      .icon-link-vert span {
-        text-align: center;
-        font-size: 0.85rem;
-        color: #000;
-        word-wrap :normal;
-        max-width: 100%;
-        line-height: 0.9;
-        padding: 2px 4px;
-        background: rgba(255, 255, 255, 0.85);
-        border: 1px solid rgba(0, 0, 0, 0.3);
-      }
-      .external-link-wrapper {
-        max-height: inherit;
-      }
-      .external-link-indicator {
-        position: relative; /* fix? */
-        bottom: 16px; /* fix? */
-        right: -44px; /* fix? */
-        z-index: 1;/* fix? */
-        width: 16px;
-        height: 16px;
-        background: white;
-        border: 1px solid #000;
-        border-radius: 2px;
+      .music-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .music-links a {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        color: #000;
+        text-decoration: none;
+        background: rgba(255,255,255,0.82);
+        border: 1px solid rgba(0,0,0,0.25);
+        padding: 2px 6px;
+        display: inline-block;
+      }
+      .music-links a:hover {
+        background: linear-gradient(to bottom, #bddf63, #5c6929);
+        color: #fff;
+        border-color: #5c6929;
+      }
+      .music-header {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 16px;
+        letter-spacing: 0.08em;
+        color: #000;
+        text-decoration: none;
+        background: rgba(255,255,255,0.82);
+        border: 1px solid rgba(0,0,0,0.25);
+        padding: 2px 6px;
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+      .music-header a:hover {
+        background: linear-gradient(to bottom, #bddf63, #5c6929);
+        color: #fff;
+        border-color: #5c6929;
       }
 
-      .external-link-indicator svg {
-        width: 12px;
-        height: 12px;
+      /* –– Active menubar item ––––––––––––––––––––– */
+      .menubar-item.menu-open {
+        background: linear-gradient(to bottom, #bddf63, #5c6929);
+        color: #fff;
+        border: 1px solid #000080;
       }
-      
+
+      /* –– Dropdown Menus ––––––––––––––––––––– */
+      .dropdown-menu {
+        display: none;
+        position: fixed;
+        width: max-content;
+        max-width: calc(100vw - 16px);
+        background: #FCFAF0;
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+        box-shadow: 3px 3px 0 rgba(0,0,0,0.35);
+        z-index: 1000;
+        padding: 3px 0;
+        font-weight: normal;
+      }
+      .dropdown-menu.open {
+        display: block;
+      }
+      .dropdown-item {
+        padding: 4px 16px 4px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        color: #000;
+        white-space: normal;
+        gap: 24px;
+        user-select: none;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 12px;
+        font-weight: normal;
+      }
+      .dropdown-item:hover {
+        background: linear-gradient(to bottom, #bddf63, #5c6929);
+        color: #fff;
+      }
+      .dropdown-item:hover .dropdown-shortcut {
+        color: rgba(255,255,255,0.75);
+      }
+      .dropdown-item.disabled {
+        color: #aaa;
+        cursor: default;
+      }
+      .dropdown-item.disabled:hover {
+        background: none;
+        color: #aaa;
+      }
+      .dropdown-shortcut {
+        color: #888;
+        font-size: 11px;
+        margin-left: auto;
+      }
+      .dropdown-divider {
+        margin: 3px 0;
+        border: none;
+        border-top: 1px solid #aaa;
+        border-bottom: 1px solid #fff;
+      }
 
       /* –– About Modal ––––––––––––––––––––– */
       .modal-overlay {
@@ -151,7 +211,7 @@
         display: flex;
       }
       .modal-window {
-        background: #FCFAF0;;
+        background: #FCFAF0;
         border-top: 2px solid #ffffff;
         border-left: 2px solid #ffffff;
         border-right: 2px solid #808080;
@@ -323,73 +383,6 @@
         border-bottom: 2px solid #ffffff;
       }
 
-      /* –– Active menubar item (dropdown open) ––––––––––––––––––––– */
-      .menubar-item.menu-open {
-        background: linear-gradient(to bottom, #bddf63, #5c6929);
-        color: #fff;
-        border: 1px solid #000080;
-      }
-
-      /* –– Dropdown Menus ––––––––––––––––––––– */
-      .dropdown-menu {
-        display: none;
-        position: fixed;
-        width: max-content;
-        max-width: calc(100vw - 16px);
-        background: #FCFAF0;
-        border-top: 2px solid #ffffff;
-        border-left: 2px solid #ffffff;
-        border-right: 2px solid #808080;
-        border-bottom: 2px solid #808080;
-        box-shadow: 3px 3px 0 rgba(0,0,0,0.35);
-        z-index: 1000;
-        padding: 3px 0;
-        font-weight: normal;
-      }
-      .dropdown-menu.open {
-        display: block;
-      }
-      .dropdown-item {
-        padding: 4px 16px 4px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        cursor: pointer;
-        color: #000;
-        white-space: normal;
-        gap: 24px;
-        user-select: none;
-        font-family: 'windowsregular', "Courier New", Courier, monospace;
-        font-size: 12px;
-        font-weight: normal;
-      }
-      .dropdown-item:hover {
-        background: linear-gradient(to bottom, #bddf63, #5c6929);
-        color: #fff;
-      }
-      .dropdown-item:hover .dropdown-shortcut {
-        color: rgba(255,255,255,0.75);
-      }
-      .dropdown-item.disabled {
-        color: #aaa;
-        cursor: default;
-      }
-      .dropdown-item.disabled:hover {
-        background: none;
-        color: #aaa;
-      }
-      .dropdown-shortcut {
-        color: #888;
-        font-size: 11px;
-        margin-left: auto;
-      }
-      .dropdown-divider {
-        margin: 3px 0;
-        border: none;
-        border-top: 1px solid #aaa;
-        border-bottom: 1px solid #fff;
-      }
-
       /* –– Toast ––––––––––––––––––––– */
       .toast-msg {
         position: fixed;
@@ -446,11 +439,10 @@
   <body>
     <header class="homeheader">
       <div class="menubar">
-        
-        <div class="menubar-title" id="about-trigger" title="About cybersolar.earth">
+        <a class="menubar-title" href="index.html" title="Back to home">
           <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="earth-icon" />
           <span>cybersolar.earth</span>
-        </div>
+        </a>
         <div class="menubar-items">
 
           <div class="menubar-item" data-menu="file">File
@@ -496,56 +488,36 @@
         </div>
       </div>
     </header>
-    <div class="desktop-content">
-      <div class="desktop-icons">
-        <a class="icon-link-vert" href="music.html">
-          <img class="" src="assets/img/icons/cybernutrients.jpg" alt="fish-icon" />
-          <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/imac_mvmt.mp4" muted loop autoplay></video> -->
-          <span>FIRST SINGLE</span>
-        </a>
-        <a class="icon-link-vert" href="cyberr.html">
-          <img class="" src="assets/img/icons/imac_nobkg.png" alt="cyber-icon" />
-          <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/imac_mvmt.mp4" muted loop autoplay></video> -->
-          <span>cyber</span>
-        </a>
-        <a class="icon-link-vert" href="solarr.html" >
-          <img class="" src="assets/img/icons/solar2.png" alt="solar-icon" />
-           <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/solar_mvmt.mp4" muted loop autoplay></video> -->
-          <span>solar</span>
-        </a>
-        <a class="icon-link-vert" href="greenerr.html">
-          <img class="" src="assets/img/icons/turbine.jpeg" alt="grass-icon" />
-          <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/turbine_mvmt.mp4" muted loop autoplay></video> -->
-          <span>grass is greener</span>
-        </a>
-        <a class="icon-link-vert" href="https://youtu.be/00cFvPZUE90?si=-qaAN01puUvErBlo" target="_blank">
-          <div class="external-link-wrapper">
-            <img class="" src="assets/img/icons/djay.png" alt="djay-icon" />
-            <div class="external-link-indicator">
-              <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13 3L13 8M13 3H8M13 3L7 9" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </div>
-          </div>
-          <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/imac_mvmt.mp4" muted loop autoplay></video> -->
-          <span>demo set</span>
-        </a>
-        <a class="icon-link-vert" href="film.html">
-          <img src="assets/img/film/stoputer.jpg" alt="film-icon" style="max-width: 60px; max-height: 120px; height: 100px;"/>
-          <span>gallery</span>
-        </a>
-      </div>
+
+    <div class="music-content">
+      <h1 class="music-header">cyber nutrients</h1>
+      <img class="music-icon" src="assets/img/icons/cybernutrients.jpg" alt="cybernutrients" />
+      <ul class="music-links">
+        <li><a href="https://stoicdapoet.bandcamp.com/track/cyber-nutrients" target="_blank" rel="noopener" title="bandcamp" aria-label="bandcamp">bandcamp</a></li>
+        <li><a href="https://www.youtube.com/watch?v=7IHlfomSvSs" target="_blank" rel="noopener" title="youtube" aria-label="youtube">youtube</a></li>
+        <li><a href="https://soundcloud.com/stoicdapoet/cybernutrients" target="_blank" rel="noopener" title="soundcloud" aria-label="soundcloud">soundcloud</a></li>
+        <li><a href="https://www.instagram.com/stoicdapoet/" target="_blank" rel="noopener" title="instagram" aria-label="instagram">instagram</a></li>
+      </ul>
     </div>
+
+
     <div class="entry-textbox">
       <label for="entry-note"><img class="menubar-title-img" src="assets/img/icons/earth.png" alt="earth-icon" /></label>
-      <textarea id="entry-note" placeholder="write here...">CyberSolar; Grass is Greener is a music & web-rooted multi-modal art project exploring the fringes of climate psychology, poetic tech, stoicism and subversive community building.
+      <textarea id="entry-note" placeholder="write here...">ABOUT 'cyber nutrients'...
+        
+      cyber nutrients' is the first single off the eco-centric DnB/hiphop project, "CyberSolar;; Grass is Greener".
 
-This site is evolving on a daily basis. At present, you may explore the first single, 'cyber nutrients', listen to the full demo set video, or explore the galleries related to the project. Please feel free to return at your leisure to continue discovering the world of CyberSolar.</textarea>
+Enmeshed in lush chords sampled from Pizza Hotline's smash album, LEVEL SELECT, and accompanied by ambient accoutrements that could be equally at home in a faraway train station or a futuristic spaceship, 'cyber nutrients' picks up wherever it is you left off the last time you needed a song to vibe to.
+
+A custom-sculpted synth bass carries the listener across years and memories, gently gliding through solar fields and green hills of wind turbines and desktop backgrounds; memories fed by nostalgia and practicality alike. Sauced-out jazz samples sooth out the frontal lobe as the contemporary pace of a classic DnB break keeps your knees bobbing.
+
+Enjoy the vibes and come along for the ride.
+Love,
+stoic
+(NOT written with AI !!)  
+      </textarea>
       <!-- Guided by the uptempo polyrhythms that define daily digital life and early exploration, CyberSolar encourages participants to observe, engage, and reflect on our collective path towards organic earth-digital harmony. -->
     </div>
-    <footer>
-      <!-- <a href="http://borice.exposed" style="text-decoration: none; color: black"><p>bo rice <span style="text-decoration: underline;">EXPOSED.</span></p></a> -->
-    </footer>
 
     <!-- About Modal -->
     <div class="modal-overlay" id="about-modal" role="dialog" aria-modal="true" aria-label="About cybersolar.earth">
@@ -600,26 +572,6 @@ This site is evolving on a daily basis. At present, you may explore the first si
         </div>
       </div>
     </div>
-
-    <script>
-      const overlay = document.getElementById('about-modal');
-      const trigger = document.getElementById('about-trigger');
-      const closeBtn = document.getElementById('modal-close');
-      const okBtn = document.getElementById('modal-ok');
-
-      function openModal() { overlay.classList.add('open'); }
-      function closeModal() { overlay.classList.remove('open'); }
-
-      trigger.addEventListener('click', openModal);
-      closeBtn.addEventListener('click', closeModal);
-      okBtn.addEventListener('click', closeModal);
-      overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) closeModal();
-      });
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') closeModal();
-      });
-    </script>
 
     <!-- Toast -->
     <div class="toast-msg" id="toast"></div>
@@ -679,6 +631,15 @@ This site is evolving on a daily basis. At present, you may explore the first si
       const menuTriggers = document.querySelectorAll('.menubar-item[data-menu]');
       let openMenu = null;
 
+      function openModal() { document.getElementById('about-modal').classList.add('open'); }
+      function closeModal() { document.getElementById('about-modal').classList.remove('open'); }
+
+      document.getElementById('modal-close').addEventListener('click', closeModal);
+      document.getElementById('modal-ok').addEventListener('click', closeModal);
+      document.getElementById('about-modal').addEventListener('click', function(e) {
+        if (e.target === document.getElementById('about-modal')) closeModal();
+      });
+
       function closeAllMenus() {
         if (openMenu) {
           openMenu.classList.remove('open');
@@ -690,7 +651,6 @@ This site is evolving on a daily basis. At present, you may explore the first si
       function positionMenu(trigger, menu) {
         const trigRect = trigger.getBoundingClientRect();
         const vw = window.innerWidth;
-        // Temporarily show to measure width
         menu.style.visibility = 'hidden';
         menu.style.display = 'block';
         const menuW = menu.offsetWidth;
@@ -699,10 +659,7 @@ This site is evolving on a daily basis. At present, you may explore the first si
 
         let left = trigRect.left;
         const top = trigRect.bottom + 3;
-        // Clamp so right edge stays within viewport with 8px margin
-        if (left + menuW > vw - 8) {
-          left = vw - menuW - 8;
-        }
+        if (left + menuW > vw - 8) left = vw - menuW - 8;
         if (left < 8) left = 8;
 
         menu.style.left = left + 'px';
