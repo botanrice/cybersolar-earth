@@ -113,6 +113,14 @@
         background: rgba(255, 255, 255, 0.85);
         border: 1px solid rgba(0, 0, 0, 0.3);
       }
+      @keyframes magenta-pulse {
+        0%   { filter: drop-shadow(0 0 3px #cc00aa88); }
+        50%  { filter: drop-shadow(0 0 8px #ff00cccc); }
+        100% { filter: drop-shadow(0 0 3px #cc00aa88); }
+      }
+      .icon-first-single img {
+        animation: magenta-pulse 2.8s ease-in-out infinite;
+      }
       .external-link-wrapper {
         max-height: inherit;
       }
@@ -498,7 +506,7 @@
     </header>
     <div class="desktop-content">
       <div class="desktop-icons">
-        <a class="icon-link-vert" href="music.html">
+        <a class="icon-link-vert icon-first-single" href="music.html">
           <img class="" src="assets/img/icons/cybernutrients.jpg" alt="fish-icon" />
           <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/imac_mvmt.mp4" muted loop autoplay></video> -->
           <span>FIRST SINGLE</span>
