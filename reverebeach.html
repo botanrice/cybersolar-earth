@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>revere beach (what it be) — cybersolar.earth</title>
+    <link rel="stylesheet" href="assets/stylez/stylez.css" />
+    <link rel="stylesheet" href="assets/stylez/cyberstylez.css" />
+    <script src="assets/js/menubar.js" defer></script>
+    <link href="./out.css" rel="stylesheet">
+    <link rel="icon" href="assets/img/icons/turbine.jpeg" type="image/x-icon" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VE6JTYYWV0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-VE6JTYYWV0', {
+        'page_title': document.title
+      });
+    </script>
+    <style>
+      .homeheader {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      .menubar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
+        border-bottom: 2px solid #dfdfdf;
+        border-top: 1px solid #ffffff;
+        padding: 2px 2px;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+        box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 #808080;
+      }
+      .menubar-title {
+        padding: 2px 4px;
+        color: #000;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        gap: 5px;
+        user-select: none;
+        text-decoration: none;
+      }
+      .menubar-title-img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+      }
+      .menubar-items {
+        display: flex;
+        gap: 0;
+      }
+      .menubar-item {
+        padding: 2px 8px;
+        cursor: pointer;
+        user-select: none;
+        border: 1px solid transparent;
+        transition: all 0.1s;
+        color: #000;
+        position: relative;
+      }
+      .menubar-item:hover {
+        border: 1px solid #000080;
+        background: linear-gradient(to bottom, #bddf63, #5c6929);
+        color: #ffffff;
+      }
+
+      /* –– Single Release content ––––––––––––––––––––– */
+      .music-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px 20px 80px;
+      }
+      .music-header {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 16px;
+        letter-spacing: 0.08em;
+        color: #000;
+        text-decoration: none;
+        background: rgba(255,255,255,0.82);
+        border: 1px solid rgba(0,0,0,0.25);
+        padding: 2px 6px;
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+      .single-subtitle {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 12px;
+        letter-spacing: 0.08em;
+        color: #333;
+        background: rgba(255,255,255,0.82);
+        border: 1px solid rgba(0,0,0,0.25);
+        padding: 2px 6px;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .music-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+      .music-links a {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        color: #000;
+        text-decoration: none;
+        background: rgba(255,255,255,0.82);
+        border: 1px solid rgba(0,0,0,0.25);
+        padding: 2px 6px;
+        display: inline-block;
+      }
+      .music-links a:hover {
+        background: linear-gradient(to bottom, #bddf63, #5c6929);
+        color: #fff;
+        border-color: #5c6929;
+      }
+
+      /* –– Retro Player Unit ––––––––––––––––––––– */
+      .player-unit {
+        width: min(440px, 100%);
+        background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+        box-shadow: 2px 2px 0 rgba(0,0,0,0.35);
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 22px;
+      }
+      .player-face {
+        display: flex;
+        gap: 10px;
+      }
+      .player-art {
+        width: 76px;
+        height: 76px;
+        flex-shrink: 0;
+        border-top: 2px solid #808080;
+        border-left: 2px solid #808080;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+        overflow: hidden;
+        background: #fff;
+      }
+      .player-art img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .player-readout {
+        flex: 1;
+        min-width: 0;
+      }
+      .player-screen {
+        background: #0b1f0b;
+        border-top: 1px solid #000000;
+        border-left: 1px solid #000000;
+        border-right: 1px solid #4a4a4a;
+        border-bottom: 1px solid #4a4a4a;
+        padding: 6px 8px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        height: 100%;
+        box-sizing: border-box;
+      }
+      .player-marquee {
+        overflow: hidden;
+        white-space: nowrap;
+        width: 100%;
+      }
+      .player-marquee span {
+        display: inline-block;
+        padding-left: 100%;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        color: #8fff9a;
+        text-shadow: 0 0 4px rgba(143,255,154,0.55);
+        animation: marquee-scroll 10s linear infinite;
+      }
+      @keyframes marquee-scroll {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+      }
+      .player-eq {
+        display: flex;
+        align-items: flex-end;
+        gap: 2px;
+        height: 22px;
+      }
+      .player-eq span {
+        flex: 1;
+        background: linear-gradient(to top, #2a6b1f, #8fff5e);
+        height: 8%;
+        transition: height 0.08s linear;
+      }
+      .player-time {
+        display: flex;
+        justify-content: space-between;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 10px;
+        color: #8fff9a;
+        letter-spacing: 0.05em;
+      }
+      .player-seek-row {
+        padding: 0 1px;
+      }
+      .retro-range {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 12px;
+        background: #ffffff;
+        border-top: 1px solid #808080;
+        border-left: 1px solid #808080;
+        border-right: 1px solid #ffffff;
+        border-bottom: 1px solid #ffffff;
+        cursor: pointer;
+        margin: 0;
+      }
+      .retro-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 14px;
+        height: 14px;
+        background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
+        border-top: 1px solid #ffffff;
+        border-left: 1px solid #ffffff;
+        border-right: 1px solid #808080;
+        border-bottom: 1px solid #808080;
+        cursor: pointer;
+      }
+      .retro-range::-moz-range-thumb {
+        width: 14px;
+        height: 14px;
+        background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
+        border: 1px solid #808080;
+        cursor: pointer;
+      }
+      .retro-range-sm {
+        width: 70px;
+      }
+      .player-controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .player-btn {
+        width: 34px;
+        height: 28px;
+        background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+        font-size: 12px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+      }
+      .player-btn:active {
+        border-top: 2px solid #808080;
+        border-left: 2px solid #808080;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+      }
+      .player-volume {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 12px;
+      }
+      .player-download-btn {
+        margin-left: auto;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 12px;
+        letter-spacing: 0.05em;
+        color: #000;
+        text-decoration: none;
+        background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+        padding: 5px 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        white-space: nowrap;
+      }
+      .player-download-btn:hover {
+        background: linear-gradient(to bottom, #bddf63, #5c6929);
+        color: #fff;
+      }
+      .player-download-btn:active {
+        border-top: 2px solid #808080;
+        border-left: 2px solid #808080;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+      }
+      .single-divider {
+        width: min(440px, 100%);
+        margin: 10px 0 24px;
+        display: block;
+      }
+      @media (max-width: 480px) {
+        .player-face {
+          flex-direction: column;
+        }
+        .player-art {
+          width: 100%;
+          height: 120px;
+        }
+        .player-download-btn {
+          margin-left: 0;
+        }
+      }
+
+      /* –– Active menubar item ––––––––––––––––––––– */
+      .menubar-item.menu-open {
+        background: linear-gradient(to bottom, #bddf63, #5c6929);
+        color: #fff;
+        border: 1px solid #000080;
+      }
+
+      /* –– Dropdown Menus ––––––––––––––––––––– */
+      .dropdown-menu {
+        display: none;
+        position: fixed;
+        width: max-content;
+        max-width: calc(100vw - 16px);
+        background: #FCFAF0;
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+        box-shadow: 3px 3px 0 rgba(0,0,0,0.35);
+        z-index: 1000;
+        padding: 3px 0;
+        font-weight: normal;
+      }
+      .dropdown-menu.open {
+        display: block;
+      }
+      .dropdown-item {
+        padding: 4px 16px 4px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        color: #000;
+        white-space: normal;
+        gap: 24px;
+        user-select: none;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 12px;
+        font-weight: normal;
+      }
+      .dropdown-item:hover {
+        background: linear-gradient(to bottom, #bddf63, #5c6929);
+        color: #fff;
+      }
+      .dropdown-item:hover .dropdown-shortcut {
+        color: rgba(255,255,255,0.75);
+      }
+      .dropdown-item.disabled {
+        color: #aaa;
+        cursor: default;
+      }
+      .dropdown-item.disabled:hover {
+        background: none;
+        color: #aaa;
+      }
+      .dropdown-shortcut {
+        color: #888;
+        font-size: 11px;
+        margin-left: auto;
+      }
+      .dropdown-divider {
+        margin: 3px 0;
+        border: none;
+        border-top: 1px solid #aaa;
+        border-bottom: 1px solid #fff;
+      }
+
+      /* –– About Modal ––––––––––––––––––––– */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: 100;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-overlay.open {
+        display: flex;
+      }
+      .modal-window {
+        background: #FCFAF0;
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+        box-shadow: 2px 2px 0 #000;
+        width: min(480px, calc(100vw - 32px));
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 13px;
+      }
+      .modal-titlebar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(to right, #000080, #1084d7);
+        color: #fff;
+        padding: 3px 4px;
+        font-size: 12px;
+        font-weight: bold;
+        user-select: none;
+        cursor: default;
+      }
+      .modal-titlebar-text {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .modal-close-btn {
+        width: 16px;
+        height: 14px;
+        background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
+        border-top: 1px solid #fff;
+        border-left: 1px solid #fff;
+        border-right: 1px solid #808080;
+        border-bottom: 1px solid #808080;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        color: #000;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        line-height: 1;
+      }
+      .modal-close-btn:active {
+        border-top: 1px solid #808080;
+        border-left: 1px solid #808080;
+        border-right: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+      }
+      .modal-body {
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .modal-top-row {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      .modal-img-box {
+        border-top: 2px solid #808080;
+        border-left: 2px solid #808080;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+        width: 140px;
+        height: 110px;
+        flex-shrink: 0;
+        overflow: hidden;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-img-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .modal-info {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .modal-app-icon {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+      }
+      .modal-app-name {
+        font-size: 14px;
+        font-weight: bold;
+        color: #000;
+        margin-top: 4px;
+      }
+      .modal-divider {
+        border: none;
+        border-top: 1px solid #808080;
+        border-bottom: 1px solid #fff;
+      }
+      .modal-details {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        font-size: 12px;
+        color: #000;
+      }
+      .modal-bars {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .modal-bar-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+      }
+      .modal-bar-label {
+        width: 110px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .modal-bar-label img {
+        width: 14px;
+        height: 14px;
+        object-fit: contain;
+      }
+      .modal-bar-track {
+        flex: 1;
+        height: 12px;
+        background: #fff;
+        border-top: 1px solid #808080;
+        border-left: 1px solid #808080;
+        border-right: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .modal-bar-fill {
+        position: absolute;
+        top: 0; left: 0; bottom: 0;
+        background: #000080;
+      }
+      .modal-ok-row {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .modal-ok-btn {
+        padding: 3px 20px;
+        background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      .modal-ok-btn:active {
+        border-top: 2px solid #808080;
+        border-left: 2px solid #808080;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+      }
+
+      /* –– Toast ––––––––––––––––––––– */
+      .toast-msg {
+        position: fixed;
+        bottom: 64px;
+        left: 50%;
+        transform: translateX(-50%) translateY(8px);
+        background: #0a0a0a;
+        color: #bddf63;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 12px;
+        padding: 6px 14px;
+        border: 1px solid #bddf63;
+        box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+        opacity: 0;
+        transition: opacity 0.18s, transform 0.18s;
+        pointer-events: none;
+        z-index: 9999;
+        white-space: nowrap;
+      }
+      .toast-msg.visible {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      /* –– Dark Mode ––––––––––––––––––––– */
+      body.dark-mode {
+        filter: invert(1) hue-rotate(180deg);
+      }
+      body.dark-mode img,
+      body.dark-mode video {
+        filter: invert(1) hue-rotate(180deg);
+      }
+
+      /* –– Glitch ––––––––––––––––––––– */
+      @keyframes glitch-anim {
+        0%   { transform: skewX(0deg);             filter: none; }
+        8%   { transform: skewX(-3deg) translateX(4px);  filter: hue-rotate(90deg) brightness(1.4); }
+        16%  { transform: skewX(3deg) translateX(-4px);  filter: hue-rotate(200deg); }
+        24%  { transform: skewX(-2deg) translateX(3px);  filter: hue-rotate(300deg) saturate(2); }
+        32%  { transform: skewX(2deg) translateX(-2px);  filter: hue-rotate(0deg); }
+        40%  { transform: skewX(0deg) translateX(2px);   filter: none; }
+        50%  { transform: skewX(-3deg);            filter: hue-rotate(120deg); }
+        60%  { transform: skewX(1deg) translateX(3px);   filter: brightness(0.6); }
+        70%  { transform: skewX(0deg);             filter: none; }
+        80%  { transform: translateX(3px);         filter: hue-rotate(240deg); }
+        90%  { transform: translateX(-3px);        filter: none; }
+        100% { transform: translate(0);            filter: none; }
+      }
+      body.glitching {
+        animation: glitch-anim 0.75s steps(1) forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="homeheader">
+      <div class="menubar">
+        <a class="menubar-title" href="index.html" title="Back to home">
+          <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="earth-icon" />
+          <span>cybersolar.earth</span>
+        </a>
+        <div class="menubar-items">
+
+          <div class="menubar-item" data-menu="file">File
+            <div class="dropdown-menu">
+              <div class="dropdown-item" data-action="arena">Open Are.na <span class="dropdown-shortcut">↗</span></div>
+              <div class="dropdown-item" data-action="borice">Open borice.exposed <span class="dropdown-shortcut">↗</span></div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-item" data-action="viewpalette">View Palette</div>
+              <div class="dropdown-item" data-action="alias">Make Alias... <span class="dropdown-shortcut">⌘M</span></div>
+              <div class="dropdown-item" data-action="print">Print Desktop... <span class="dropdown-shortcut">⌘P</span></div>
+            </div>
+          </div>
+
+          <div class="menubar-item" data-menu="edit">Edit
+            <div class="dropdown-menu">
+              <div class="dropdown-item disabled">Undo <span class="dropdown-shortcut">⌘Z</span></div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-item" data-action="wallpaper">Change Wallpaper</div>
+              <div class="dropdown-item" data-action="invert">Invert Colors</div>
+              <div class="dropdown-item" data-action="glitch">Glitch Screen <span class="dropdown-shortcut">⌘G</span></div>
+            </div>
+          </div>
+
+          <div class="menubar-item" data-menu="view">View
+            <div class="dropdown-menu">
+              <div class="dropdown-item" data-action="darkmode" id="darkmode-item"><span id="darkmode-label">Dark Mode</span><span class="dropdown-shortcut">⌘D</span></div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-item" data-action="zoomin">Zoom In <span class="dropdown-shortcut">⌘+</span></div>
+              <div class="dropdown-item" data-action="zoomout">Zoom Out <span class="dropdown-shortcut">⌘−</span></div>
+              <div class="dropdown-item" data-action="fullscreen">Full Screen <span class="dropdown-shortcut">⌘F</span></div>
+            </div>
+          </div>
+
+          <div class="menubar-item" data-menu="help">Help
+            <div class="dropdown-menu">
+              <div class="dropdown-item" data-action="about">About cybersolar.earth</div>
+              <div class="dropdown-item" data-action="whatisthis">What is CyberSolar?</div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-item" data-action="viewsource">View Source... <span class="dropdown-shortcut">↗</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+    <div class="music-content">
+      <h1 class="music-header">revere beach (what it be)</h1>
+      <span class="single-subtitle">stoic da poet &nbsp;·&nbsp; single &nbsp;·&nbsp; streaming soon — .wav exclusive, right here</span>
+
+      <div class="player-unit" id="player-unit">
+        <div class="player-face">
+          <div class="player-art">
+            <img src="assets/img/icons/stoic1.png" alt="stoic da poet" />
+          </div>
+          <div class="player-readout">
+            <div class="player-screen">
+              <div class="player-marquee">
+                <span id="track-marquee-text">REVERE BEACH (WHAT IT BE) •••• STOIC DA POET •••• CYBERSOLAR;; GRASS IS GREENER •••• </span>
+              </div>
+              <div class="player-eq" id="player-eq" aria-hidden="true"></div>
+              <div class="player-time">
+                <span id="time-current">0:00</span>
+                <span id="time-duration">0:00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="player-seek-row">
+          <input type="range" id="seek" class="retro-range" min="0" max="100" value="0" step="0.1" aria-label="seek position" />
+        </div>
+
+        <div class="player-controls">
+          <button type="button" class="player-btn" id="btn-play" aria-label="Play">▶</button>
+          <button type="button" class="player-btn" id="btn-stop" aria-label="Stop">■</button>
+          <div class="player-volume">
+            <span aria-hidden="true">🔊</span>
+            <input type="range" id="volume" class="retro-range retro-range-sm" min="0" max="1" value="1" step="0.01" aria-label="volume" />
+          </div>
+          <a
+            class="player-download-btn"
+            id="download-btn"
+            href="assets/music/reverebeach%28whatitbe%29_stoicdapoet.wav"
+            download="Revere Beach (what it be) - stoic da poet.wav"
+          >⇩ download .wav</a>
+        </div>
+      </div>
+
+      <audio
+        id="revere-audio"
+        preload="metadata"
+        src="assets/music/reverebeach%28whatitbe%29_stoicdapoet.wav"
+      ></audio>
+      <noscript>
+        <audio controls style="width: 100%; max-width: 440px; margin-bottom: 20px;" src="assets/music/reverebeach%28whatitbe%29_stoicdapoet.wav"></audio>
+      </noscript>
+
+      <img class="single-divider" src="assets/img/misc/custom_breaker.png" alt="" aria-hidden="true" />
+
+      <ul class="music-links">
+        <li><a href="https://www.instagram.com/stoicdapoet/" target="_blank" rel="noopener" title="instagram" aria-label="instagram">instagram</a></li>
+        <li><a href="https://stoicdapoet.bandcamp.com/" target="_blank" rel="noopener" title="bandcamp" aria-label="bandcamp">bandcamp</a></li>
+        <li><a href="music.html" title="more music" aria-label="more music">more music →</a></li>
+      </ul>
+    </div>
+
+    <div class="entry-textbox" id="entry-textbox">
+      <div class="entry-textbox-topbar">
+        <label for="entry-note"><img class="menubar-title-img" src="assets/img/icons/earth.png" alt="earth-icon" /></label>
+        <button type="button" class="entry-minimize-btn" id="entry-minimize-btn" title="Minimize" aria-label="Minimize note">_</button>
+      </div>
+      <textarea id="entry-note" placeholder="write here...">ABOUT 'revere beach (what it be)'...
+
+Low tide, high static. 'revere beach (what it be)' is a postcard from the edge of the grid — sent from a shoreline where the signal still flickers between dial-up and driftwood.
+
+Before this ever touches a streaming platform, it lives here first: one page, one file, no algorithm standing between you and the sound. Press play, turn it up, or take it with you — the .wav is yours to keep.
+
+Love,
+stoic
+(NOT written with AI !!)
+      </textarea>
+    </div>
+    <div class="entry-textbox-bar" id="entry-textbox-bar">
+      <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="earth-icon" />
+      <span class="entry-textbox-bar-text" id="entry-textbox-bar-text"></span>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal-overlay" id="about-modal" role="dialog" aria-modal="true" aria-label="About cybersolar.earth">
+      <div class="modal-window">
+        <div class="modal-titlebar">
+          <div class="modal-titlebar-text">
+            <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="" />
+            About cybersolar.earth
+          </div>
+          <div class="modal-close-btn" id="modal-close" aria-label="Close">✕</div>
+        </div>
+        <div class="modal-body">
+          <div class="modal-top-row">
+            <div class="modal-img-box">
+              <img src="assets/img/bkg/turbine_dsk.jpeg" alt="turbine background" />
+            </div>
+            <div class="modal-info">
+              <img class="modal-app-icon" src="assets/img/icons/earth.png" alt="cybersolar icon" />
+              <div class="modal-app-name">cybersolar.earth 1.0</div>
+            </div>
+          </div>
+          <hr class="modal-divider" />
+          <div class="modal-details">
+            <p>Built by:&nbsp; Bo Rice</p>
+            <p>Sections Live:&nbsp; 3</p>
+            <p>™ &amp; © cybersolar.earth, 2024–2026</p>
+          </div>
+          <hr class="modal-divider" />
+          <div class="modal-bars">
+            <div class="modal-bar-row">
+              <div class="modal-bar-label">
+                <img src="assets/img/icons/imac_nobkg.png" alt="" /> cyber
+              </div>
+              <div class="modal-bar-track"><div class="modal-bar-fill" style="width:75%"></div></div>
+            </div>
+            <div class="modal-bar-row">
+              <div class="modal-bar-label">
+                <img src="assets/img/icons/solar2.png" alt="" /> solar
+              </div>
+              <div class="modal-bar-track"><div class="modal-bar-fill" style="width:60%"></div></div>
+            </div>
+            <div class="modal-bar-row">
+              <div class="modal-bar-label">
+                <img src="assets/img/icons/turbine.jpeg" alt="" /> grass is greener
+              </div>
+              <div class="modal-bar-track"><div class="modal-bar-fill" style="width:45%"></div></div>
+            </div>
+          </div>
+          <div class="modal-ok-row">
+            <button class="modal-ok-btn" id="modal-ok">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast-msg" id="toast"></div>
+
+    <!-- Palette Modal -->
+    <div class="modal-overlay" id="palette-modal" role="dialog" aria-modal="true" aria-label="View Palette">
+      <div class="modal-window" style="width: min(600px, calc(100vw - 32px));">
+        <div class="modal-titlebar">
+          <div class="modal-titlebar-text">
+            <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="" />
+            palettes.html
+          </div>
+          <div class="modal-close-btn" id="palette-modal-close" aria-label="Close">✕</div>
+        </div>
+        <div style="padding: 0; line-height: 0;">
+          <iframe
+            src="palettes.html"
+            style="width: 100%; height: 420px; border: none; display: block; background: #fff;"
+            title="Palette"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Help / What is CyberSolar Modal -->
+    <div class="modal-overlay" id="help-modal" role="dialog" aria-modal="true" aria-label="What is CyberSolar?">
+      <div class="modal-window">
+        <div class="modal-titlebar">
+          <div class="modal-titlebar-text">
+            <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="" />
+            What is CyberSolar?
+          </div>
+          <div class="modal-close-btn" id="help-modal-close" aria-label="Close">✕</div>
+        </div>
+        <div class="modal-body">
+          <div class="modal-details">
+            <p><strong>CyberSolar; Grass is Greener</strong> is a music &amp; web-rooted multi-modal art project.</p>
+            <p>It explores the fringes of climate psychology, poetic tech, stoicism, and subversive community building.</p>
+            <p>Navigate the desktop icons to enter each channel. The site evolves daily.</p>
+          </div>
+          <hr class="modal-divider" />
+          <div class="modal-details" style="font-size:11px; color:#666;">
+            <p>File &nbsp;→&nbsp; social portals &amp; page export</p>
+            <p>Edit &nbsp;→&nbsp; mutate the canvas</p>
+            <p>View &nbsp;→&nbsp; alter perception</p>
+            <p>Help &nbsp;→&nbsp; you are here</p>
+          </div>
+          <div class="modal-ok-row">
+            <button class="modal-ok-btn" id="help-modal-ok">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // –– Dropdown Menu Logic ––
+      const menuTriggers = document.querySelectorAll('.menubar-item[data-menu]');
+      let openMenu = null;
+
+      function openModal() { document.getElementById('about-modal').classList.add('open'); }
+      function closeModal() { document.getElementById('about-modal').classList.remove('open'); }
+
+      document.getElementById('modal-close').addEventListener('click', closeModal);
+      document.getElementById('modal-ok').addEventListener('click', closeModal);
+      document.getElementById('about-modal').addEventListener('click', function(e) {
+        if (e.target === document.getElementById('about-modal')) closeModal();
+      });
+
+      function closeAllMenus() {
+        if (openMenu) {
+          openMenu.classList.remove('open');
+          openMenu.closest('.menubar-item').classList.remove('menu-open');
+          openMenu = null;
+        }
+      }
+
+      function positionMenu(trigger, menu) {
+        const trigRect = trigger.getBoundingClientRect();
+        const vw = window.innerWidth;
+        menu.style.visibility = 'hidden';
+        menu.style.display = 'block';
+        const menuW = menu.offsetWidth;
+        menu.style.display = '';
+        menu.style.visibility = '';
+
+        let left = trigRect.left;
+        const top = trigRect.bottom + 3;
+        if (left + menuW > vw - 8) left = vw - menuW - 8;
+        if (left < 8) left = 8;
+
+        menu.style.left = left + 'px';
+        menu.style.top = top + 'px';
+      }
+
+      menuTriggers.forEach(trigger => {
+        trigger.addEventListener('click', e => {
+          e.stopPropagation();
+          const menu = trigger.querySelector('.dropdown-menu');
+          if (!menu) return;
+          if (openMenu === menu) {
+            closeAllMenus();
+          } else {
+            closeAllMenus();
+            positionMenu(trigger, menu);
+            menu.classList.add('open');
+            trigger.classList.add('menu-open');
+            openMenu = menu;
+          }
+        });
+      });
+
+      document.addEventListener('click', closeAllMenus);
+
+      document.querySelectorAll('.dropdown-item:not(.disabled)').forEach(item => {
+        item.addEventListener('click', e => {
+          e.stopPropagation();
+          const action = item.dataset.action;
+          closeAllMenus();
+          if (action) handleMenuAction(action);
+        });
+      });
+
+      // –– Toast ––
+      function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('visible');
+        clearTimeout(t._timer);
+        t._timer = setTimeout(() => t.classList.remove('visible'), 2500);
+      }
+
+      // –– State ––
+      const wallpapers = [
+        '',
+        'radial-gradient(ellipse at center, #1c3a1c 0%, #0a1205 100%)',
+        'radial-gradient(ellipse at center, #1a0a3a 0%, #08050f 100%)',
+        'radial-gradient(ellipse at center, #3a2510 0%, #150d05 100%)',
+        'radial-gradient(ellipse at center, #0a1a3a 0%, #03060f 100%)',
+      ];
+      const wallpaperNames = ['Default', 'Greenfield', 'Ultraviolet', 'Desert', 'Deep Sea'];
+      let wallpaperIdx = 0;
+      let isInverted = false;
+      let isDark = false;
+      let zoomLevel = 1;
+
+      function handleMenuAction(action) {
+        switch (action) {
+          case 'arena':
+            window.open('https://www.are.na', '_blank', 'noopener');
+            break;
+          case 'borice':
+            window.open('http://borice.exposed', '_blank', 'noopener');
+            break;
+          case 'alias':
+            navigator.clipboard.writeText(window.location.href)
+              .then(() => showToast('Alias created — URL copied ✓'))
+              .catch(() => showToast('Could not access clipboard'));
+            break;
+          case 'print':
+            window.print();
+            break;
+          case 'wallpaper':
+            wallpaperIdx = (wallpaperIdx + 1) % wallpapers.length;
+            document.body.style.background = wallpapers[wallpaperIdx];
+            showToast('Wallpaper: ' + wallpaperNames[wallpaperIdx]);
+            break;
+          case 'invert':
+            isInverted = !isInverted;
+            document.body.style.filter = isInverted ? 'invert(1)' : '';
+            showToast(isInverted ? 'Colors inverted' : 'Colors restored');
+            break;
+          case 'glitch':
+            document.body.classList.remove('glitching');
+            void document.body.offsetWidth;
+            document.body.classList.add('glitching');
+            setTimeout(() => document.body.classList.remove('glitching'), 800);
+            break;
+          case 'darkmode':
+            isDark = !isDark;
+            document.body.classList.toggle('dark-mode', isDark);
+            document.getElementById('darkmode-label').textContent = isDark ? 'Light Mode' : 'Dark Mode';
+            showToast(isDark ? 'Dark mode on' : 'Light mode on');
+            break;
+          case 'zoomin':
+            zoomLevel = Math.min(+(zoomLevel + 0.15).toFixed(2), 2);
+            document.body.style.zoom = zoomLevel;
+            showToast('Zoom: ' + Math.round(zoomLevel * 100) + '%');
+            break;
+          case 'zoomout':
+            zoomLevel = Math.max(+(zoomLevel - 0.15).toFixed(2), 0.5);
+            document.body.style.zoom = zoomLevel;
+            showToast('Zoom: ' + Math.round(zoomLevel * 100) + '%');
+            break;
+          case 'fullscreen':
+            if (!document.fullscreenElement) {
+              document.documentElement.requestFullscreen()
+                .catch(() => showToast('Fullscreen not available'));
+            } else {
+              document.exitFullscreen();
+            }
+            break;
+          case 'viewpalette':
+            document.getElementById('palette-modal').classList.add('open');
+            break;
+          case 'about':
+            openModal();
+            break;
+          case 'whatisthis':
+            document.getElementById('help-modal').classList.add('open');
+            break;
+          case 'viewsource':
+            window.open('view-source:' + window.location.href, '_blank', 'noopener');
+            break;
+        }
+      }
+
+      // –– Palette Modal ––
+      const paletteModal = document.getElementById('palette-modal');
+      document.getElementById('palette-modal-close').addEventListener('click', () => paletteModal.classList.remove('open'));
+      paletteModal.addEventListener('click', e => { if (e.target === paletteModal) paletteModal.classList.remove('open'); });
+
+      // –– Help Modal ––
+      const helpModal = document.getElementById('help-modal');
+      document.getElementById('help-modal-close').addEventListener('click', () => helpModal.classList.remove('open'));
+      document.getElementById('help-modal-ok').addEventListener('click', () => helpModal.classList.remove('open'));
+      helpModal.addEventListener('click', e => { if (e.target === helpModal) helpModal.classList.remove('open'); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') helpModal.classList.remove('open'); });
+
+      // –– Entry Textbox Minimize ––
+      const entryTextbox = document.getElementById('entry-textbox');
+      const entryMinimizeBtn = document.getElementById('entry-minimize-btn');
+      const entryBar = document.getElementById('entry-textbox-bar');
+      const entryBarText = document.getElementById('entry-textbox-bar-text');
+      const entryNote = document.getElementById('entry-note');
+      if (entryTextbox && entryMinimizeBtn && entryBar && entryBarText && entryNote) {
+        const snippetLength = 32;
+        entryMinimizeBtn.addEventListener('click', () => {
+          const text = entryNote.value.trim();
+          entryBarText.textContent = text.slice(0, snippetLength) + (text.length > snippetLength ? '…' : '');
+          entryTextbox.classList.add('minimized');
+          entryBar.classList.add('visible');
+        });
+        entryBar.addEventListener('click', () => {
+          entryBar.classList.remove('visible');
+          entryTextbox.classList.remove('minimized');
+        });
+      }
+
+      // –– Revere Beach Retro Player ––
+      (function () {
+        const audio = document.getElementById('revere-audio');
+        const playBtn = document.getElementById('btn-play');
+        const stopBtn = document.getElementById('btn-stop');
+        const seek = document.getElementById('seek');
+        const volume = document.getElementById('volume');
+        const timeCurrent = document.getElementById('time-current');
+        const timeDuration = document.getElementById('time-duration');
+        const eq = document.getElementById('player-eq');
+        if (!audio || !playBtn || !eq) return;
+
+        const BAR_COUNT = 24;
+        for (let i = 0; i < BAR_COUNT; i++) {
+          eq.appendChild(document.createElement('span'));
+        }
+        const bars = eq.querySelectorAll('span');
+
+        function formatTime(sec) {
+          if (!isFinite(sec) || sec < 0) sec = 0;
+          const m = Math.floor(sec / 60);
+          const s = Math.floor(sec % 60);
+          return m + ':' + String(s).padStart(2, '0');
+        }
+
+        function idleBars() {
+          bars.forEach((b, i) => { b.style.height = (6 + (i % 3) * 2) + '%'; });
+        }
+        idleBars();
+
+        let seeking = false;
+        let audioCtx = null, analyser = null, dataArray = null, rafId = null;
+
+        function setupAnalyser() {
+          if (audioCtx) return;
+          try {
+            const Ctx = window.AudioContext || window.webkitAudioContext;
+            audioCtx = new Ctx();
+            const source = audioCtx.createMediaElementSource(audio);
+            analyser = audioCtx.createAnalyser();
+            analyser.fftSize = 64;
+            source.connect(analyser);
+            analyser.connect(audioCtx.destination);
+            dataArray = new Uint8Array(analyser.frequencyBinCount);
+          } catch (e) {
+            audioCtx = null;
+            analyser = null;
+          }
+        }
+
+        function animateBars() {
+          rafId = requestAnimationFrame(animateBars);
+          if (!analyser) return;
+          analyser.getByteFrequencyData(dataArray);
+          const step = Math.max(1, Math.floor(dataArray.length / bars.length));
+          bars.forEach((bar, i) => {
+            const v = dataArray[i * step] || 0;
+            const pct = Math.max(6, Math.round((v / 255) * 100));
+            bar.style.height = pct + '%';
+          });
+        }
+
+        playBtn.addEventListener('click', function () {
+          if (audio.paused) {
+            setupAnalyser();
+            if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+            audio.play().catch(() => showToast('Could not play audio'));
+          } else {
+            audio.pause();
+          }
+        });
+
+        stopBtn.addEventListener('click', function () {
+          audio.pause();
+          audio.currentTime = 0;
+        });
+
+        audio.addEventListener('play', function () {
+          playBtn.textContent = '❚❚';
+          playBtn.setAttribute('aria-label', 'Pause');
+          if (!rafId) animateBars();
+        });
+
+        audio.addEventListener('pause', function () {
+          playBtn.textContent = '▶';
+          playBtn.setAttribute('aria-label', 'Play');
+          if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+          idleBars();
+        });
+
+        audio.addEventListener('ended', idleBars);
+
+        audio.addEventListener('loadedmetadata', function () {
+          seek.max = audio.duration || 0;
+          timeDuration.textContent = formatTime(audio.duration);
+        });
+
+        audio.addEventListener('timeupdate', function () {
+          if (!seeking) seek.value = audio.currentTime;
+          timeCurrent.textContent = formatTime(audio.currentTime);
+        });
+
+        seek.addEventListener('input', function () {
+          seeking = true;
+          timeCurrent.textContent = formatTime(+seek.value);
+        });
+        seek.addEventListener('change', function () {
+          audio.currentTime = +seek.value;
+          seeking = false;
+        });
+
+        volume.addEventListener('input', function () {
+          audio.volume = +volume.value;
+        });
+      })();
+    </script>
+  </body>
+</html>

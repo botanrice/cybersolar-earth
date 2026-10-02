@@ -25,6 +25,29 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeModal();
 });
 
+// ── Entry Textbox Minimize ──
+const entryTextbox = document.getElementById('entry-textbox');
+const entryMinimizeBtn = document.getElementById('entry-minimize-btn');
+const entryBar = document.getElementById('entry-textbox-bar');
+const entryBarText = document.getElementById('entry-textbox-bar-text');
+const entryNote = document.getElementById('entry-note');
+
+if (entryTextbox && entryMinimizeBtn && entryBar && entryBarText && entryNote) {
+  const snippetLength = 32;
+  function minimizeEntryTextbox() {
+    const text = entryNote.value.trim();
+    entryBarText.textContent = text.slice(0, snippetLength) + (text.length > snippetLength ? '…' : '');
+    entryTextbox.classList.add('minimized');
+    entryBar.classList.add('visible');
+  }
+  function restoreEntryTextbox() {
+    entryBar.classList.remove('visible');
+    entryTextbox.classList.remove('minimized');
+  }
+  entryMinimizeBtn.addEventListener('click', minimizeEntryTextbox);
+  entryBar.addEventListener('click', restoreEntryTextbox);
+}
+
 // ── Dropdown Menu Logic ──
 const menuTriggers = document.querySelectorAll('.menubar-item[data-menu]');
 let openMenu = null;

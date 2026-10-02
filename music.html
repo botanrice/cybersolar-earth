@@ -503,8 +503,11 @@
     </div>
 
 
-    <div class="entry-textbox">
-      <label for="entry-note"><img class="menubar-title-img" src="assets/img/icons/earth.png" alt="earth-icon" /></label>
+    <div class="entry-textbox" id="entry-textbox">
+      <div class="entry-textbox-topbar">
+        <label for="entry-note"><img class="menubar-title-img" src="assets/img/icons/earth.png" alt="earth-icon" /></label>
+        <button type="button" class="entry-minimize-btn" id="entry-minimize-btn" title="Minimize" aria-label="Minimize note">_</button>
+      </div>
       <textarea id="entry-note" placeholder="write here...">ABOUT 'cyber nutrients'...
         
       cyber nutrients' is the first single off the eco-centric DnB/hiphop project, "CyberSolar;; Grass is Greener".
@@ -519,6 +522,10 @@ stoic
 (NOT written with AI !!)  
       </textarea>
       <!-- Guided by the uptempo polyrhythms that define daily digital life and early exploration, CyberSolar encourages participants to observe, engage, and reflect on our collective path towards organic earth-digital harmony. -->
+    </div>
+    <div class="entry-textbox-bar" id="entry-textbox-bar">
+      <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="earth-icon" />
+      <span class="entry-textbox-bar-text" id="entry-textbox-bar-text"></span>
     </div>
 
     <!-- About Modal -->
@@ -801,6 +808,26 @@ stoic
       document.getElementById('help-modal-ok').addEventListener('click', () => helpModal.classList.remove('open'));
       helpModal.addEventListener('click', e => { if (e.target === helpModal) helpModal.classList.remove('open'); });
       document.addEventListener('keydown', e => { if (e.key === 'Escape') helpModal.classList.remove('open'); });
+
+      // –– Entry Textbox Minimize ––
+      const entryTextbox = document.getElementById('entry-textbox');
+      const entryMinimizeBtn = document.getElementById('entry-minimize-btn');
+      const entryBar = document.getElementById('entry-textbox-bar');
+      const entryBarText = document.getElementById('entry-textbox-bar-text');
+      const entryNote = document.getElementById('entry-note');
+      if (entryTextbox && entryMinimizeBtn && entryBar && entryBarText && entryNote) {
+        const snippetLength = 32;
+        entryMinimizeBtn.addEventListener('click', () => {
+          const text = entryNote.value.trim();
+          entryBarText.textContent = text.slice(0, snippetLength) + (text.length > snippetLength ? '…' : '');
+          entryTextbox.classList.add('minimized');
+          entryBar.classList.add('visible');
+        });
+        entryBar.addEventListener('click', () => {
+          entryBar.classList.remove('visible');
+          entryTextbox.classList.remove('minimized');
+        });
+      }
     </script>
   </body>
 </html>

@@ -460,17 +460,27 @@
       body.glitching {
         animation: glitch-anim 0.75s steps(1) forwards;
       }
+
+      /* –– Shorter sticky note on mobile, homepage only ––––––––––––––––––––– */
+      @media (max-width: 768px) {
+        .entry-textbox-home {
+          height: 180px;
+        }
+        .entry-textbox-home textarea {
+          min-height: 60px;
+        }
+      }
     </style>
   </head>
   <body>
     <header class="homeheader">
       <div class="menubar">
-        
+
         <div class="menubar-title" id="about-trigger" title="About cybersolar.earth">
           <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="earth-icon" />
           <span>cybersolar.earth</span>
         </div>
-        <div class="menubar-items">
+        <div class="menubar-items">  
 
           <div class="menubar-item" data-menu="file">File
             <div class="dropdown-menu">
@@ -517,10 +527,14 @@
     </header>
     <div class="desktop-content">
       <div class="desktop-icons">
-        <a class="icon-link-vert icon-first-single" id="internetSearchParty" href="https://ra.co/events/2529756">
+        <a class="icon-link-vert icon-first-single" id="internetSearchParty" href="searchparty.html">
           <img class="" src="assets/img/misc/InternetSearchParty02.2.jpeg" alt="fish-icon" />
           <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/imac_mvmt.mp4" muted loop autoplay></video> -->
           <span>INTERNET SEARCH PARTY</span>
+        </a>
+        <a class="icon-link-vert icon-first-single" href="reverebeach.html">
+          <img class="" src="assets/img/icons/stoic1.png" alt="revere-beach-icon" />
+          <span>'revere beach (what it be)'</span>
         </a>
         <a class="icon-link-vert" href="music.html">
           <img class="" src="assets/img/icons/cybernutrients.jpg" alt="fish-icon" />
@@ -564,12 +578,19 @@
         </a>
       </div>
     </div>
-    <div class="entry-textbox">
-      <label for="entry-note"><img class="menubar-title-img" src="assets/img/icons/earth.png" alt="earth-icon" /></label>
+    <div class="entry-textbox entry-textbox-home" id="entry-textbox">
+      <div class="entry-textbox-topbar">
+        <label for="entry-note"><img class="menubar-title-img" src="assets/img/icons/earth.png" alt="earth-icon" /></label>
+        <button type="button" class="entry-minimize-btn" id="entry-minimize-btn" title="Minimize" aria-label="Minimize note">_</button>
+      </div>
       <textarea id="entry-note" placeholder="write here...">CyberSolar; Grass is Greener is a music & web-rooted multi-modal art project exploring the fringes of climate psychology, poetic tech, stoicism and subversive community building.
 
 This site is evolving on a daily basis. At present, you may explore the first single, 'cyber nutrients', listen to the full demo set video, or explore the galleries related to the project. Please feel free to return at your leisure to continue discovering the world of CyberSolar.</textarea>
       <!-- Guided by the uptempo polyrhythms that define daily digital life and early exploration, CyberSolar encourages participants to observe, engage, and reflect on our collective path towards organic earth-digital harmony. -->
+    </div>
+    <div class="entry-textbox-bar" id="entry-textbox-bar">
+      <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="earth-icon" />
+      <span class="entry-textbox-bar-text" id="entry-textbox-bar-text"></span>
     </div>
     <footer>
       <!-- <a href="http://borice.exposed" style="text-decoration: none; color: black"><p>bo rice <span style="text-decoration: underline;">EXPOSED.</span></p></a> -->
@@ -870,6 +891,26 @@ This site is evolving on a daily basis. At present, you may explore the first si
       document.getElementById('help-modal-ok').addEventListener('click', () => helpModal.classList.remove('open'));
       helpModal.addEventListener('click', e => { if (e.target === helpModal) helpModal.classList.remove('open'); });
       document.addEventListener('keydown', e => { if (e.key === 'Escape') helpModal.classList.remove('open'); });
+
+      // –– Entry Textbox Minimize ––
+      const entryTextbox = document.getElementById('entry-textbox');
+      const entryMinimizeBtn = document.getElementById('entry-minimize-btn');
+      const entryBar = document.getElementById('entry-textbox-bar');
+      const entryBarText = document.getElementById('entry-textbox-bar-text');
+      const entryNote = document.getElementById('entry-note');
+      if (entryTextbox && entryMinimizeBtn && entryBar && entryBarText && entryNote) {
+        const snippetLength = 32;
+        entryMinimizeBtn.addEventListener('click', () => {
+          const text = entryNote.value.trim();
+          entryBarText.textContent = text.slice(0, snippetLength) + (text.length > snippetLength ? '…' : '');
+          entryTextbox.classList.add('minimized');
+          entryBar.classList.add('visible');
+        });
+        entryBar.addEventListener('click', () => {
+          entryBar.classList.remove('visible');
+          entryTextbox.classList.remove('minimized');
+        });
+      }
     </script>
   </body>
 </html>
