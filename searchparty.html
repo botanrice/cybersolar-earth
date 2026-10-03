@@ -1024,66 +1024,111 @@
         });
       })();
 
-      // –– Link Wall (Netlify Forms) ––
-      (function () {
-        const form = document.getElementById('link-form');
-        const list = document.getElementById('link-wall-list');
-        const emptyMsg = document.getElementById('link-wall-empty');
-        console.log('Link wall init:', { form: !!form, list: !!list, emptyMsg: !!emptyMsg });
-        if (!form || !list) return;
+      // –– Link Wall (Netlify Function, fetched + persisted like a commit board) ––
+      class LinkWall {
+        constructor() {
+          this.links = [];
+          this.form = document.getElementById('link-form');
+          this.list = document.getElementById('link-wall-list');
+          this.init();
+        }
 
-        form.addEventListener('submit', function (e) {
-          console.log('Form submit event fired');
-          e.preventDefault();
-          const formData = new FormData(form);
+        async init() {
+          if (!this.form || !this.list) return;
+          await this.loadLinks();
+          this.displayLinks();
+          this.setupEventListeners();
+        }
+
+        async loadLinks() {
+          try {
+            const response = await fetch('/.netlify/functions/get-links');
+            if (response.ok) {
+              this.links = await response.json();
+            } else {
+              console.error('Failed to fetch links:', response.status);
+              this.links = this.loadFromLocalStorage();
+            }
+          } catch (e) {
+            console.error('Error loading links:', e);
+            this.links = this.loadFromLocalStorage();
+          }
+        }
+
+        loadFromLocalStorage() {
+          const stored = localStorage.getItem('searchPartyLinks');
+          return stored ? JSON.parse(stored) : [];
+        }
+
+        saveToLocalStorage() {
+          localStorage.setItem('searchPartyLinks', JSON.stringify(this.links));
+        }
+
+        setupEventListeners() {
+          this.form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.submitLink();
+          });
+        }
+
+        async submitLink() {
+          const formData = new FormData(this.form);
           const url = (formData.get('link') || '').toString().trim();
-          const nick = (formData.get('nickname') || '').toString().trim() || 'anonymous surfer';
-          const body = new URLSearchParams(formData).toString();
-          
-          console.log('Form data:', { url, nick, bodyLength: body.length });
-          if (!url) {
-            console.log('URL is empty, aborting');
+          const nickname = (formData.get('nickname') || '').toString().trim() || 'anonymous surfer';
+          if (!url) return;
+
+          const entry = { url, nickname, timestamp: new Date().toISOString() };
+
+          try {
+            const response = await fetch('/.netlify/functions/submit-link', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ link: url, nickname }),
+            });
+
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            const saved = await response.json();
+            this.links.unshift(saved);
+          } catch (err) {
+            console.error('Error submitting link, falling back to local storage:', err);
+            this.links.unshift(entry);
+            this.saveToLocalStorage();
+          }
+
+          this.displayLinks();
+          this.form.reset();
+          showToast('Link added to the wall ✓');
+        }
+
+        displayLinks() {
+          if (this.links.length === 0) {
+            this.list.innerHTML = '<li class="link-wall-empty">no links yet — be the first!</li>';
             return;
           }
 
-          console.log('Sending fetch to /', { method: 'POST', contentType: 'application/x-www-form-urlencoded' });
-          fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: body,
-          })
-            .then(function (res) {
-              console.log('✓ Fetch resolved with status:', res.status, res.statusText);
-              if (!res.ok) throw new Error('HTTP ' + res.status);
-              console.log('Status OK, adding to DOM');
-              
-              if (emptyMsg) {
-                console.log('Removing empty message');
-                emptyMsg.remove();
-              }
-              const li = document.createElement('li');
-              const a = document.createElement('a');
-              a.href = url;
-              a.target = '_blank';
-              a.rel = 'noopener';
-              a.textContent = url;
-              li.appendChild(a);
-              const span = document.createElement('span');
-              span.className = 'link-wall-nick';
-              span.textContent = ' — ' + nick;
-              li.appendChild(span);
-              console.log('Created list item, prepending to list');
-              list.prepend(li);
-              form.reset();
-              showToast('Link added to the wall ✓');
-              console.log('Toast shown, form reset');
-            })
-            .catch(function (err) {
-              console.error('✗ Fetch failed:', err.message, err);
-              showToast('Submission failed: ' + err.message);
-            });
-        });
-      })();
+          this.list.innerHTML = this.links.map((entry) => this.createLinkHTML(entry)).join('');
+        }
+
+        createLinkHTML(entry) {
+          return `
+            <li>
+              <a href="${this.escapeHtml(entry.url)}" target="_blank" rel="noopener">${this.escapeHtml(entry.url)}</a>
+              <span class="link-wall-nick"> — ${this.escapeHtml(entry.nickname)}</span>
+            </li>
+          `;
+        }
+
+        escapeHtml(unsafe) {
+          return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+        }
+      }
+
+      new LinkWall();
     </script>
   </body>
 </html>
