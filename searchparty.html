@@ -1177,29 +1177,38 @@
         const form = document.getElementById('link-form');
         const list = document.getElementById('link-wall-list');
         const emptyMsg = document.getElementById('link-wall-empty');
+        console.log('Link wall init:', { form: !!form, list: !!list, emptyMsg: !!emptyMsg });
         if (!form || !list) return;
 
         form.addEventListener('submit', function (e) {
+          console.log('Form submit event fired');
           e.preventDefault();
           const formData = new FormData(form);
           const url = (formData.get('link') || '').toString().trim();
           const nick = (formData.get('nickname') || '').toString().trim() || 'anonymous surfer';
+          const body = new URLSearchParams(formData).toString();
+          
+          console.log('Form data:', { url, nick, bodyLength: body.length });
+          if (!url) {
+            console.log('URL is empty, aborting');
+            return;
+          }
 
-          if (!url) return;
-
+          console.log('Sending fetch to /', { method: 'POST', contentType: 'application/x-www-form-urlencoded' });
           fetch('/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(formData).toString(),
+            body: body,
           })
-            .then(function () {
-              showToast('Link added to the wall ✓');
-            })
-            .catch(function () {
-              showToast('Saved locally — network hiccup reaching the host');
-            })
-            .finally(function () {
-              if (emptyMsg) emptyMsg.remove();
+            .then(function (res) {
+              console.log('✓ Fetch resolved with status:', res.status, res.statusText);
+              if (!res.ok) throw new Error('HTTP ' + res.status);
+              console.log('Status OK, adding to DOM');
+              
+              if (emptyMsg) {
+                console.log('Removing empty message');
+                emptyMsg.remove();
+              }
               const li = document.createElement('li');
               const a = document.createElement('a');
               a.href = url;
@@ -1211,8 +1220,15 @@
               span.className = 'link-wall-nick';
               span.textContent = ' — ' + nick;
               li.appendChild(span);
+              console.log('Created list item, prepending to list');
               list.prepend(li);
               form.reset();
+              showToast('Link added to the wall ✓');
+              console.log('Toast shown, form reset');
+            })
+            .catch(function (err) {
+              console.error('✗ Fetch failed:', err.message, err);
+              showToast('Submission failed: ' + err.message);
             });
         });
       })();
