@@ -1024,111 +1024,72 @@
         });
       })();
 
-      // –– Link Wall (Netlify Function, fetched + persisted like a commit board) ––
-      class LinkWall {
-        constructor() {
-          this.links = [];
-          this.form = document.getElementById('link-form');
-          this.list = document.getElementById('link-wall-list');
-          this.init();
+      // –– Link Wall (fetches submissions via Netlify Function, posts via Netlify Forms) ––
+      (function () {
+        const form = document.getElementById('link-form');
+        const list = document.getElementById('link-wall-list');
+        if (!form || !list) return;
+
+        function escapeHtml(unsafe) {
+          return unsafe
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
         }
 
-        async init() {
-          if (!this.form || !this.list) return;
-          await this.loadLinks();
-          this.displayLinks();
-          this.setupEventListeners();
+        function renderLinks(links) {
+          if (!links.length) {
+            list.innerHTML = '<li class="link-wall-empty" id="link-wall-empty">no links yet — be the first!</li>';
+            return;
+          }
+          list.innerHTML = links.map(function (link) {
+            return '<li><a href="' + escapeHtml(link.url) + '" target="_blank" rel="noopener">' +
+              escapeHtml(link.url) + '</a><span class="link-wall-nick"> — ' +
+              escapeHtml(link.nickname) + '</span></li>';
+          }).join('');
         }
 
-        async loadLinks() {
+        async function loadLinks() {
           try {
             const response = await fetch('/.netlify/functions/get-links');
             if (response.ok) {
-              this.links = await response.json();
+              renderLinks(await response.json());
             } else {
               console.error('Failed to fetch links:', response.status);
-              this.links = this.loadFromLocalStorage();
             }
           } catch (e) {
             console.error('Error loading links:', e);
-            this.links = this.loadFromLocalStorage();
           }
         }
 
-        loadFromLocalStorage() {
-          const stored = localStorage.getItem('searchPartyLinks');
-          return stored ? JSON.parse(stored) : [];
-        }
-
-        saveToLocalStorage() {
-          localStorage.setItem('searchPartyLinks', JSON.stringify(this.links));
-        }
-
-        setupEventListeners() {
-          this.form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            this.submitLink();
-          });
-        }
-
-        async submitLink() {
-          const formData = new FormData(this.form);
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const formData = new FormData(form);
           const url = (formData.get('link') || '').toString().trim();
-          const nickname = (formData.get('nickname') || '').toString().trim() || 'anonymous surfer';
+          const body = new URLSearchParams(formData).toString();
           if (!url) return;
 
-          const entry = { url, nickname, timestamp: new Date().toISOString() };
-
-          try {
-            const response = await fetch('/.netlify/functions/submit-link', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ link: url, nickname }),
+          fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: body,
+          })
+            .then(function (res) {
+              if (!res.ok) throw new Error('HTTP ' + res.status);
+              form.reset();
+              showToast('Link added to the wall ✓');
+              loadLinks();
+            })
+            .catch(function (err) {
+              console.error('Fetch failed:', err.message, err);
+              showToast('Submission failed: ' + err.message);
             });
+        });
 
-            if (!response.ok) throw new Error('HTTP ' + response.status);
-            const saved = await response.json();
-            this.links.unshift(saved);
-          } catch (err) {
-            console.error('Error submitting link, falling back to local storage:', err);
-            this.links.unshift(entry);
-            this.saveToLocalStorage();
-          }
-
-          this.displayLinks();
-          this.form.reset();
-          showToast('Link added to the wall ✓');
-        }
-
-        displayLinks() {
-          if (this.links.length === 0) {
-            this.list.innerHTML = '<li class="link-wall-empty">no links yet — be the first!</li>';
-            return;
-          }
-
-          this.list.innerHTML = this.links.map((entry) => this.createLinkHTML(entry)).join('');
-        }
-
-        createLinkHTML(entry) {
-          return `
-            <li>
-              <a href="${this.escapeHtml(entry.url)}" target="_blank" rel="noopener">${this.escapeHtml(entry.url)}</a>
-              <span class="link-wall-nick"> — ${this.escapeHtml(entry.nickname)}</span>
-            </li>
-          `;
-        }
-
-        escapeHtml(unsafe) {
-          return unsafe
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-        }
-      }
-
-      new LinkWall();
+        loadLinks();
+      })();
     </script>
   </body>
 </html>
