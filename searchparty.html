@@ -11,15 +11,7 @@
     <link rel="icon" href="assets/img/misc/InternetSearchParty02.2.jpeg" type="image/jpeg" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VE6JTYYWV0"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-VE6JTYYWV0', {
-        'page_title': document.title
-      });
-    </script>
+    <script src="assets/js/analytics.js"></script>
     <style>
       /* –– Internet Search Party palette, drawn from the event flyer –– */
       :root {
@@ -1080,6 +1072,7 @@
               if (!res.ok) throw new Error('HTTP ' + res.status);
               form.reset();
               showToast('Link added to the wall ✓');
+              if (window.csTrackEvent) window.csTrackEvent('link_wall_submit', {});
               loadLinks();
             })
             .catch(function (err) {

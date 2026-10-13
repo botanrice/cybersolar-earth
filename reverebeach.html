@@ -11,15 +11,7 @@
     <link rel="icon" href="assets/img/icons/turbine.jpeg" type="image/x-icon" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VE6JTYYWV0"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-VE6JTYYWV0', {
-        'page_title': document.title
-      });
-    </script>
+    <script src="assets/js/analytics.js"></script>
     <style>
       .homeheader {
         display: flex;
@@ -1142,6 +1134,8 @@ stoic
           });
         }
 
+        let hasTrackedPlay = false;
+
         playBtn.addEventListener('click', function () {
           if (audio.paused) {
             setupAnalyser();
@@ -1155,12 +1149,17 @@ stoic
         stopBtn.addEventListener('click', function () {
           audio.pause();
           audio.currentTime = 0;
+          if (window.csTrackEvent) window.csTrackEvent('audio_stop', { track: 'revere beach (what it be)' });
         });
 
         audio.addEventListener('play', function () {
           playBtn.textContent = '❚❚';
           playBtn.setAttribute('aria-label', 'Pause');
           if (!rafId) animateBars();
+          if (window.csTrackEvent) {
+            window.csTrackEvent(hasTrackedPlay ? 'audio_resume' : 'audio_play', { track: 'revere beach (what it be)' });
+            hasTrackedPlay = true;
+          }
         });
 
         audio.addEventListener('pause', function () {
@@ -1168,9 +1167,15 @@ stoic
           playBtn.setAttribute('aria-label', 'Play');
           if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
           idleBars();
+          if (window.csTrackEvent && !audio.ended) {
+            window.csTrackEvent('audio_pause', { track: 'revere beach (what it be)', current_time: Math.floor(audio.currentTime) });
+          }
         });
 
-        audio.addEventListener('ended', idleBars);
+        audio.addEventListener('ended', function () {
+          idleBars();
+          if (window.csTrackEvent) window.csTrackEvent('audio_complete', { track: 'revere beach (what it be)' });
+        });
 
         audio.addEventListener('loadedmetadata', function () {
           seek.max = audio.duration || 0;
