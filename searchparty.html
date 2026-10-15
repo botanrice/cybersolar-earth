@@ -369,15 +369,19 @@
         padding: 6px 14px;
         cursor: pointer;
       }
-      .submit-btn:hover {
+      .submit-btn:not(:disabled):hover {
         background: linear-gradient(to bottom, var(--isp-accent-2), var(--isp-accent));
         color: #fff;
       }
-      .submit-btn:active {
+      .submit-btn:not(:disabled):active {
         border-top: 2px solid #808080;
         border-left: 2px solid #808080;
         border-right: 2px solid #ffffff;
         border-bottom: 2px solid #ffffff;
+      }
+      .submit-btn:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
       }
       .link-wall-list {
         list-style: none;
@@ -838,15 +842,18 @@
       <div class="isp-section-label">📎 paste what you find</div>
       <div class="link-wall-box">
         <p>Found something good while surfing tonight? Drop the link below — stoic is watching the wall live.</p>
+        <!-- Netlify Forms submission is disabled.
         <form name="link-wall" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="link-form" class="link-form">
           <input type="hidden" name="form-name" value="link-wall" />
+        -->
+        <div class="link-form">
           <p class="hidden-field">
             <label>Don't fill this out if you're human: <input name="bot-field" /></label>
           </p>
           <input type="text" name="link" id="link-input" placeholder="paste a link or site name..." required />
           <input type="text" name="nickname" id="nick-input" placeholder="your name (optional)" maxlength="40" />
-          <button type="submit" class="submit-btn">➕ add to the wall</button>
-        </form>
+          <button type="button" disabled class="submit-btn">➕ add to the wall</button>
+        </div>
         <ul class="link-wall-list" id="link-wall-list">
           <li class="link-wall-empty" id="link-wall-empty">no links yet from this browser — be the first!</li>
         </ul>
@@ -1016,11 +1023,10 @@
         });
       })();
 
-      // –– Link Wall (fetches submissions via Netlify Function, posts via Netlify Forms) ––
+      // –– Link Wall (loads existing submissions via Netlify Function) ––
       (function () {
-        const form = document.getElementById('link-form');
         const list = document.getElementById('link-wall-list');
-        if (!form || !list) return;
+        if (!list) return;
 
         function escapeHtml(unsafe) {
           return unsafe
@@ -1056,6 +1062,7 @@
           }
         }
 
+        /* Netlify Forms submission is disabled.
         form.addEventListener('submit', function (e) {
           e.preventDefault();
           const formData = new FormData(form);
@@ -1080,6 +1087,7 @@
               showToast('Submission failed: ' + err.message);
             });
         });
+        */
 
         loadLinks();
       })();
