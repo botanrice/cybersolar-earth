@@ -68,22 +68,34 @@
         width: 100%;
       }
       .desktop-icons {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 25px;
-        justify-content: flex-start;
+        display: grid;
+        grid-template-columns: repeat(4, 60px);
+        column-gap: 25px;
+        row-gap: 70px;
+        align-items: start;
         max-width: 500px;
         padding: 20px;
         text-align: left;
         line-height: 1;
       }
-      #internetSearchParty {
+      .desktop-icons > a {
+        margin-bottom: 0;
+      }
+      .icon-revere { grid-area: 1 / 1; }
+      .icon-nutrients { grid-area: 1 / 2; }
+      .icon-cyber { grid-area: 2 / 1; }
+      .icon-solar { grid-area: 2 / 2; }
+      .icon-grass { grid-area: 2 / 3; }
+      .icon-party { grid-area: 3 / 1; }
+      .icon-demo { grid-area: 3 / 2; }
+      .icon-gallery { grid-area: 3 / 3; }
+      .icon-links { grid-area: 3 / 4; }
+      .icon-link-bigHighlight {
         width: 140px;
         max-width: 180px;
         max-height: none;
       }
-      #internetSearchParty img {
+      .icon-link-bigHighlight img {
         width: 140px;
         height: 180px;
         max-width: 140px;
@@ -519,36 +531,37 @@
     </header>
     <div class="desktop-content">
       <div class="desktop-icons">
-        <a class="icon-link-vert icon-first-single" id="internetSearchParty" href="searchparty.html">
-          <img class="" src="assets/img/misc/InternetSearchParty02.2.jpeg" alt="fish-icon" />
+        <!-- icons are arranged in CSS grid in style tag -->
+        <a class="icon-link-vert icon-party" id="internetSearchParty" href="searchparty.html">
+          <img class="" src="assets/img/misc/InternetSearchParty02.2.jpeg" alt="internet-search-party-flyer" />
           <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/imac_mvmt.mp4" muted loop autoplay></video> -->
-          <span>INTERNET SEARCH PARTY</span>
+          <span>Internet Search Party</span>
         </a>
-        <a class="icon-link-vert icon-first-single" href="reverebeach.html">
+        <a class="icon-link-vert icon-first-single icon-revere" href="reverebeach.html">
           <img class="" src="assets/img/icons/stoic1.png" alt="revere-beach-icon" />
           <span>'revere beach (what it be)'</span>
         </a>
-        <a class="icon-link-vert" href="music.html">
+        <a class="icon-link-vert icon-nutrients" href="music.html">
           <img class="" src="assets/img/icons/cybernutrients.jpg" alt="fish-icon" />
           <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/imac_mvmt.mp4" muted loop autoplay></video> -->
           <span>'cyber nutrients'</span>
         </a>
-        <a class="icon-link-vert" href="cyberr.html">
+        <a class="icon-link-vert icon-cyber" href="cyberr.html">
           <img class="" src="assets/img/icons/imac_nobkg.png" alt="cyber-icon" />
           <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/imac_mvmt.mp4" muted loop autoplay></video> -->
           <span>cyber</span>
         </a>
-        <a class="icon-link-vert" href="solarr.html" >
+        <a class="icon-link-vert icon-solar" href="solarr.html" >
           <img class="" src="assets/img/icons/solar2.png" alt="solar-icon" />
            <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/solar_mvmt.mp4" muted loop autoplay></video> -->
           <span>solar</span>
         </a>
-        <a class="icon-link-vert" href="greenerr.html">
+        <a class="icon-link-vert icon-grass" href="greenerr.html">
           <img class="" src="assets/img/icons/turbine.jpeg" alt="grass-icon" />
           <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/turbine_mvmt.mp4" muted loop autoplay></video> -->
           <span>grass is greener</span>
         </a>
-        <a class="icon-link-vert" href="https://youtu.be/00cFvPZUE90?si=-qaAN01puUvErBlo" target="_blank">
+        <a class="icon-link-vert icon-demo" href="https://youtu.be/00cFvPZUE90?si=-qaAN01puUvErBlo" target="_blank">
           <div class="external-link-wrapper">
             <img class="" src="assets/img/icons/djay.png" alt="djay-icon" />
             <div class="external-link-indicator">
@@ -560,11 +573,11 @@
           <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/imac_mvmt.mp4" muted loop autoplay></video> -->
           <span>demo set</span>
         </a>
-        <a class="icon-link-vert" href="film.html">
+        <a class="icon-link-vert icon-gallery" href="film.html">
           <img src="assets/img/film/stoputer.jpg" alt="film-icon" style="max-width: 60px; max-height: 120px; height: 100px;"/>
           <span>gallery</span>
         </a>
-        <a class="icon-link-vert" href="links.html">
+        <a class="icon-link-vert icon-links" href="links.html">
           <img src="assets/img/icons/links1_nobg.png" alt="film-icon" style="max-width: 60px; max-height: 120px; height: 100px;"/>
           <span>links</span>
         </a>
