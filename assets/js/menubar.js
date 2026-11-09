@@ -205,3 +205,18 @@ document.getElementById('help-modal-close').addEventListener('click', () => help
 document.getElementById('help-modal-ok').addEventListener('click', () => helpModal.classList.remove('open'));
 helpModal.addEventListener('click', e => { if (e.target === helpModal) helpModal.classList.remove('open'); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') helpModal.classList.remove('open'); });
+
+
+// Injection code
+/* (function () {
+  const slot = document.getElementById('menubar-slot');
+  if (!slot) return;
+
+  fetch('assets/partials/menubar.html')
+    .then(res => res.text())
+    .then(html => {
+      slot.innerHTML = html;
+      // initialize dropdown and modal handlers here, after injection
+    })
+    .catch(err => console.error('Menubar failed to load:', err));
+})(); */
