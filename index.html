@@ -68,17 +68,23 @@
         width: 100%;
       }
       .desktop-icons {
-        display: grid;
-        grid-template-columns: repeat(4, 60px);
-        column-gap: 25px;
-        row-gap: 70px;
-        align-items: start;
+        display: flex;
+        flex-direction: column;
+        gap: 70px;
         max-width: 500px;
         padding: 20px;
         text-align: left;
         line-height: 1;
       }
-      .desktop-icons > a {
+      .desktop-icons-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 60px);
+        column-gap: 25px;
+        row-gap: 70px;
+        align-items: start;
+        margin-bottom: 50px;
+      }
+      .desktop-icons a {
         margin-bottom: 0;
       }
       .icon-revere { grid-area: 1 / 1; }
@@ -90,17 +96,6 @@
       .icon-demo { grid-area: 3 / 2; }
       .icon-gallery { grid-area: 3 / 3; }
       .icon-links { grid-area: 3 / 4; }
-      .icon-link-bigHighlight {
-        width: 140px;
-        max-width: 180px;
-        max-height: none;
-      }
-      .icon-link-bigHighlight img {
-        width: 140px;
-        height: 180px;
-        max-width: 140px;
-        max-height: 180px;
-      }
       .icon-link-vert {
         max-width: 60px;
         max-height: 60px;
@@ -127,6 +122,17 @@
         padding: 2px 4px;
         background: rgba(255, 255, 255, 0.85);
         border: 1px solid rgba(0, 0, 0, 0.3);
+      }
+      .icon-link-bigHighlight {
+        width: 140px;
+        max-width: 180px;
+        max-height: none;
+      }
+      .icon-link-bigHighlight img {
+        width: 140px;
+        height: 180px;
+        max-width: 140px;
+        max-height: 180px;
       }
       @keyframes magenta-pulse {
         0%   { filter: drop-shadow(0 0 3px #cc00aa88); }
@@ -532,6 +538,14 @@
     <div class="desktop-content">
       <div class="desktop-icons">
         <!-- icons are arranged in CSS grid in style tag -->
+        <div class="desktop-www">
+         <a class="icon-link-vert icon-link-bigHighlight icon-first-single" id="wwwHackathon" href="www.html">
+          <img class="" src="assets/img/misc/wwwhack.jpeg" alt="human-week-flyer" />
+          <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/imac_mvmt.mp4" muted loop autoplay></video> -->
+          <span>WWW: A Hackathon</span>
+        </a>
+        </div>
+        <div class="desktop-icons-grid">
         <a class="icon-link-vert icon-party" id="internetSearchParty" href="searchparty.html">
           <img class="" src="assets/img/misc/InternetSearchParty02.2.jpeg" alt="internet-search-party-flyer" />
           <!-- <video id="shirt_vid" class="ico-img" src="assets/img/icons/imac_mvmt.mp4" muted loop autoplay></video> -->
@@ -581,6 +595,7 @@
           <img src="assets/img/icons/links1_nobg.png" alt="film-icon" style="max-width: 60px; max-height: 120px; height: 100px;"/>
           <span>links</span>
         </a>
+        </div>
       </div>
     </div>
     <div class="entry-textbox entry-textbox-home" id="entry-textbox">

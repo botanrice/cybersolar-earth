@@ -439,6 +439,18 @@
         color: var(--isp-ink-soft);
         font-style: italic;
       }
+      /* –– Hack page link */
+      .hack-page-link {
+        display: flex; 
+        justify-content: center;
+      }
+      .hack-page-link a {
+        text-decoration: underline;
+      }
+      .hack-page-link a:hover {
+        color: purple;
+      }
+      
 
       /* –– Dropdown Menus ––––––––––––––––––––– */
       .dropdown-menu {
@@ -794,7 +806,7 @@
 
     <div class="isp-content">
       <div class="isp-title-row">
-        <img src="assets/img/misc/aim_sunglasses.jpg" alt="" aria-hidden="true" />
+        <!-- <img src="assets/img/misc/aim_sunglasses.jpg" alt="" aria-hidden="true" /> -->
         <h1 class="music-header">WWW: Using the Early Web, HTML & AI as Activism</h1>
       </div>
       <div class="isp-byline">
@@ -880,7 +892,7 @@
       <!-- <div class="isp-section-label">📎 paste what you find</div> -->
       <div class="isp-section-label">📎 what we found</div>
       <div class="link-wall-box">
-        <p>All the sites that were discovered at the Internet Search Party</p>
+        <p>Drop a site that you found on our web search!</p>
         <form name="www-hack" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" id="link-form" class="link-form">
           <input type="hidden" name="form-name" value="www-hack" />
           <p class="hidden-field">
@@ -893,6 +905,11 @@
         <ul class="link-wall-list" id="link-wall-list">
           <li class="link-wall-empty" id="link-wall-empty">no links yet from this browser — be the first!</li>
         </ul>
+      </div>
+
+      <!-- Link to hack page -->
+      <div class="hack-page-link">
+        <a href="/wwwhack.html" target="_self">Hackathon Page</a>
       </div>
     </div>
 

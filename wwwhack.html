@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WWW: Using the Early Web, HTML & AI as Activism [Hacking Page] — cybersolar.earth</title>
+    <link rel="stylesheet" href="assets/stylez/stylez.css" />
+    <link rel="stylesheet" href="assets/stylez/cyberstylez.css" />
+    <script src="assets/js/menubar.js" defer></script>
+    <link href="./out.css" rel="stylesheet">
+    <link rel="icon" href="assets/img/misc/InternetSearchParty02.2.jpeg" type="image/jpeg" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VE6JTYYWV0"></script>
+    <script src="assets/js/analytics.js"></script>
+    <style>
+      /* –– Internet Search Party palette, drawn from the event flyer –– */
+      :root {
+        --isp-bg-1: #eef8fc;
+        --isp-bg-2: #c3e7f5;
+        --isp-bg-3: #8fcfe9;
+        --isp-ink: #0f4c66;
+        --isp-ink-soft: #1d6a8c;
+        --isp-accent: #1f8fc4;
+        --isp-accent-2: #58c4e8;
+        --isp-line: #9fd4e8;
+      }
+      body {
+        background: radial-gradient(ellipse at top, var(--isp-bg-1) 0%, var(--isp-bg-2) 55%, var(--isp-bg-3) 100%);
+        color: var(--isp-ink);
+      }
+      body::before {
+        display: none; /* clean background — no turbine texture on this page */
+      }
+
+      .homeheader {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+      .menubar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
+        border-bottom: 2px solid #dfdfdf;
+        border-top: 1px solid #ffffff;
+        padding: 2px 2px;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+        box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 #808080;
+      }
+      .menubar-title {
+        padding: 2px 4px;
+        color: #000;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        gap: 5px;
+        user-select: none;
+        text-decoration: none;
+      }
+      .menubar-title-img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+      }
+      .menubar-items {
+        display: flex;
+        gap: 0;
+      }
+      .menubar-item {
+        padding: 2px 8px;
+        cursor: pointer;
+        user-select: none;
+        border: 1px solid transparent;
+        transition: all 0.1s;
+        color: #000;
+        position: relative;
+      }
+      .menubar-item:hover {
+        border: 1px solid #000080;
+        background: linear-gradient(to bottom, #bddf63, #5c6929);
+        color: #ffffff;
+      }
+      .menubar-item.menu-open {
+        background: linear-gradient(to bottom, #bddf63, #5c6929);
+        color: #fff;
+        border: 1px solid #000080;
+      }
+
+      /* –– Page content ––––––––––––––––––––– */
+      .isp-content {
+        width: 100%;
+        max-width: 620px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px 20px 100px;
+        margin: 0 auto;
+      }
+      .isp-title-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 6px;
+      }
+      .isp-title-row img {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
+        image-rendering: pixelated;
+      }
+      .music-header {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 18px;
+        letter-spacing: 0.08em;
+        color: var(--isp-ink);
+        text-decoration: none;
+        background: rgba(255,255,255,0.75);
+        border: 1px solid rgba(15,76,102,0.3);
+        padding: 2px 8px;
+        display: inline-block;
+      }
+      .isp-subtitle {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 12px;
+        color: var(--isp-ink-soft);
+        letter-spacing: 0.06em;
+        background: rgba(255,255,255,0.65);
+        border: 1px solid rgba(15,76,102,0.2);
+        padding: 2px 8px;
+        display: inline-block;
+        margin: 0;
+      }
+      .isp-byline {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 22px;
+      }
+      .isp-byline-pic {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1px solid rgba(15,76,102,0.3);
+      }
+      .isp-subtitle a {
+        font-style: italic;
+        text-decoration: underline;
+        color: inherit;
+      }
+      .isp-subtitle a:hover {
+        color: purple;
+      }
+
+      /* –– flyer homage strip –– */
+      .isp-triptych {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 26px;
+        flex-wrap: wrap;
+      }
+      .isp-triptych figure {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+      .isp-triptych-img {
+        width: 56px;
+        height: 56px;
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+        overflow: hidden;
+        background: #fff;
+      }
+      .isp-triptych-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .isp-triptych figcaption {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 10.5px;
+        letter-spacing: 0.08em;
+        color: var(--isp-ink-soft);
+      }
+      .divider {
+        color: rgba(5, 5, 15, 0.4);
+        width: 100%;
+        margin: 25px 5px;
+      }
+
+      /* –– section labels –– */
+      .hack-header {
+        font-size: 17px;
+        font-style: italic;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 20px 0;
+      }
+      .isp-section-label {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--isp-ink-soft);
+        border-bottom: 1px solid var(--isp-line);
+        padding-bottom: 5px;
+        margin: 10px 0 14px;
+        width: 100%;
+      }
+
+      /* –– subsection headers –– */
+      .isp-subhead {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 13px;
+        font-weight: bold;
+        color: var(--isp-ink-soft);
+        margin: 18px 0 8px;
+      }
+      .isp-subhead small {
+        font-size: 11px;
+        font-weight: normal;
+      }
+
+      /* –– notes text –– */
+      .isp-text {
+        width: 100%;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--isp-ink);
+        margin-bottom: 24px;
+      }
+      .isp-text p {
+        margin: 0 0 8px;
+      }
+      .isp-text ul {
+        margin: 0 0 8px;
+        padding-left: 22px;
+        list-style: disc;
+      }
+      .isp-text li {
+        margin-bottom: 4px;
+      }
+      .isp-pov {
+        font-size: 12px;
+      }
+      .isp-text a {
+        color: var(--isp-accent);
+      }
+      .isp-section-label small {
+        text-transform: none;
+      }
+      /* misc. extras */
+      .prompt-list h4 {
+        font-style: italic;
+        font-weight: 600;
+        padding-bottom: 10px;
+        color: black;
+      }
+      #pittsfield-prompt {
+        font-size: 13px;
+        font-style: italic;
+      }
+
+      /* –– random word generator widget –– */
+      .widget-box {
+        width: 100%;
+        max-width: 420px;
+        background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+        box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+        margin-bottom: 30px;
+      }
+      .widget-titlebar {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: linear-gradient(to right, var(--isp-ink), var(--isp-accent));
+        color: #fff;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 4px 8px;
+      }
+      .widget-body {
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .word-readout {
+        flex: 1;
+        background: #0b1f2a;
+        color: var(--isp-accent-2);
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 15px;
+        letter-spacing: 0.1em;
+        text-align: center;
+        padding: 10px 6px;
+        border-top: 1px solid #000;
+        border-left: 1px solid #000;
+        border-right: 1px solid #4a4a4a;
+        border-bottom: 1px solid #4a4a4a;
+        text-shadow: 0 0 6px rgba(88,196,232,0.65);
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+      .word-readout.flicker {
+        animation: word-flicker 0.25s steps(2) 2;
+      }
+      @keyframes word-flicker {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.35; }
+      }
+      .player-btn[hidden] {
+        display: none;
+      }
+      .widget-roll-btn {
+        width: auto;
+        padding: 0 14px;
+        height: 36px;
+        font-size: 12px;
+        letter-spacing: 0.05em;
+        white-space: nowrap;
+      }
+      .player-btn {
+        background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .player-btn:active {
+        border-top: 2px solid #808080;
+        border-left: 2px solid #808080;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+      }
+
+      /* –– link wall form –– */
+      .link-wall-box {
+        width: 100%;
+        max-width: 420px;
+        min-height: 300px;
+        background: rgba(255,255,255,0.82);
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+        box-shadow: 2px 2px 0 rgba(0,0,0,0.25);
+        padding: 14px;
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .link-wall-box p {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 12px;
+        color: var(--isp-ink);
+        line-height: 1.5;
+      }
+      .link-form {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .link-form input[type="url"],
+      .link-form input[type="text"] {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 13px;
+        padding: 6px 8px;
+        border-top: 1px solid #808080;
+        border-left: 1px solid #808080;
+        border-right: 1px solid #ffffff;
+        border-bottom: 1px solid #ffffff;
+        background: #fff;
+        color: #000;
+      }
+      .hidden-field {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+      }
+      .submit-btn {
+        align-self: flex-start;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 12px;
+        letter-spacing: 0.05em;
+        color: #000;
+        background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+        padding: 6px 14px;
+        cursor: pointer;
+      }
+      .submit-btn:not(:disabled):hover {
+        background: linear-gradient(to bottom, var(--isp-accent-2), var(--isp-accent));
+        color: #fff;
+      }
+      .submit-btn:not(:disabled):active {
+        border-top: 2px solid #808080;
+        border-left: 2px solid #808080;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+      }
+      .submit-btn:disabled {
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+      .link-wall-list {
+        list-style: none;
+        margin: 4px 0 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        max-height: 160px;
+        overflow-y: auto;
+      }
+      .link-wall-list li {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 11.5px;
+        color: var(--isp-ink);
+        word-break: break-all;
+        border-bottom: 1px dotted var(--isp-line);
+        padding-bottom: 4px;
+      }
+      .link-wall-list li a {
+        color: var(--isp-accent);
+      }
+      .link-wall-nick {
+        color: var(--isp-ink-soft);
+      }
+      .link-wall-empty {
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 11px;
+        color: var(--isp-ink-soft);
+        font-style: italic;
+      }
+
+      /* –– Dropdown Menus ––––––––––––––––––––– */
+      .dropdown-menu {
+        display: none;
+        position: fixed;
+        width: max-content;
+        max-width: calc(100vw - 16px);
+        background: #FCFAF0;
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+        box-shadow: 3px 3px 0 rgba(0,0,0,0.35);
+        z-index: 1000;
+        padding: 3px 0;
+        font-weight: normal;
+      }
+      .dropdown-menu.open {
+        display: block;
+      }
+      .dropdown-item {
+        padding: 4px 16px 4px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        color: #000;
+        white-space: normal;
+        gap: 24px;
+        user-select: none;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 12px;
+        font-weight: normal;
+      }
+      .dropdown-item:hover {
+        background: linear-gradient(to bottom, #bddf63, #5c6929);
+        color: #fff;
+      }
+      .dropdown-item:hover .dropdown-shortcut {
+        color: rgba(255,255,255,0.75);
+      }
+      .dropdown-item.disabled {
+        color: #aaa;
+        cursor: default;
+      }
+      .dropdown-item.disabled:hover {
+        background: none;
+        color: #aaa;
+      }
+      .dropdown-shortcut {
+        color: #888;
+        font-size: 11px;
+        margin-left: auto;
+      }
+      .dropdown-divider {
+        margin: 3px 0;
+        border: none;
+        border-top: 1px solid #aaa;
+        border-bottom: 1px solid #fff;
+      }
+
+      /* –– About Modal ––––––––––––––––––––– */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.35);
+        z-index: 100;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-overlay.open {
+        display: flex;
+      }
+      .modal-window {
+        background: #FCFAF0;
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+        box-shadow: 2px 2px 0 #000;
+        width: min(480px, calc(100vw - 32px));
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 13px;
+      }
+      .modal-titlebar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: linear-gradient(to right, #000080, #1084d7);
+        color: #fff;
+        padding: 3px 4px;
+        font-size: 12px;
+        font-weight: bold;
+        user-select: none;
+        cursor: default;
+      }
+      .modal-titlebar-text {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .modal-close-btn {
+        width: 16px;
+        height: 14px;
+        background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
+        border-top: 1px solid #fff;
+        border-left: 1px solid #fff;
+        border-right: 1px solid #808080;
+        border-bottom: 1px solid #808080;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        color: #000;
+        cursor: pointer;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        line-height: 1;
+      }
+      .modal-close-btn:active {
+        border-top: 1px solid #808080;
+        border-left: 1px solid #808080;
+        border-right: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+      }
+      .modal-body {
+        padding: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .modal-top-row {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      .modal-img-box {
+        border-top: 2px solid #808080;
+        border-left: 2px solid #808080;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+        width: 140px;
+        height: 110px;
+        flex-shrink: 0;
+        overflow: hidden;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .modal-img-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .modal-info {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .modal-app-icon {
+        width: 48px;
+        height: 48px;
+        object-fit: contain;
+      }
+      .modal-app-name {
+        font-size: 14px;
+        font-weight: bold;
+        color: #000;
+        margin-top: 4px;
+      }
+      .modal-divider {
+        border: none;
+        border-top: 1px solid #808080;
+        border-bottom: 1px solid #fff;
+      }
+      .modal-details {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        font-size: 12px;
+        color: #000;
+      }
+      .modal-bars {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .modal-bar-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12px;
+      }
+      .modal-bar-label {
+        width: 110px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      .modal-bar-label img {
+        width: 14px;
+        height: 14px;
+        object-fit: contain;
+      }
+      .modal-bar-track {
+        flex: 1;
+        height: 12px;
+        background: #fff;
+        border-top: 1px solid #808080;
+        border-left: 1px solid #808080;
+        border-right: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .modal-bar-fill {
+        position: absolute;
+        top: 0; left: 0; bottom: 0;
+        background: #000080;
+      }
+      .modal-ok-row {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .modal-ok-btn {
+        padding: 3px 20px;
+        background: linear-gradient(to bottom, #dfdfdf, #c0c0c0);
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #808080;
+        border-bottom: 2px solid #808080;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      .modal-ok-btn:active {
+        border-top: 2px solid #808080;
+        border-left: 2px solid #808080;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+      }
+
+      /* –– Toast ––––––––––––––––––––– */
+      .toast-msg {
+        position: fixed;
+        bottom: 64px;
+        left: 50%;
+        transform: translateX(-50%) translateY(8px);
+        background: #0a0a0a;
+        color: #bddf63;
+        font-family: 'windowsregular', "Courier New", Courier, monospace;
+        font-size: 12px;
+        padding: 6px 14px;
+        border: 1px solid #bddf63;
+        box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+        opacity: 0;
+        transition: opacity 0.18s, transform 0.18s;
+        pointer-events: none;
+        z-index: 9999;
+        white-space: nowrap;
+      }
+      .toast-msg.visible {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+
+      /* –– Dark Mode ––––––––––––––––––––– */
+      body.dark-mode {
+        filter: invert(1) hue-rotate(180deg);
+      }
+      body.dark-mode img,
+      body.dark-mode video {
+        filter: invert(1) hue-rotate(180deg);
+      }
+
+      /* –– Glitch ––––––––––––––––––––– */
+      @keyframes glitch-anim {
+        0%   { transform: skewX(0deg);             filter: none; }
+        8%   { transform: skewX(-3deg) translateX(4px);  filter: hue-rotate(90deg) brightness(1.4); }
+        16%  { transform: skewX(3deg) translateX(-4px);  filter: hue-rotate(200deg); }
+        24%  { transform: skewX(-2deg) translateX(3px);  filter: hue-rotate(300deg) saturate(2); }
+        32%  { transform: skewX(2deg) translateX(-2px);  filter: hue-rotate(0deg); }
+        40%  { transform: skewX(0deg) translateX(2px);   filter: none; }
+        50%  { transform: skewX(-3deg);            filter: hue-rotate(120deg); }
+        60%  { transform: skewX(1deg) translateX(3px);   filter: brightness(0.6); }
+        70%  { transform: skewX(0deg);             filter: none; }
+        80%  { transform: translateX(3px);         filter: hue-rotate(240deg); }
+        90%  { transform: translateX(-3px);        filter: none; }
+        100% { transform: translate(0);            filter: none; }
+      }
+      body.glitching {
+        animation: glitch-anim 0.75s steps(1) forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="homeheader">
+      <div class="menubar">
+        <a class="menubar-title" href="index.html" title="Back to home">
+          <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="earth-icon" />
+          <span>cybersolar.earth</span>
+        </a>
+        <div class="menubar-items">
+
+          <div class="menubar-item" data-menu="file">File
+            <div class="dropdown-menu">
+              <div class="dropdown-item" data-action="arena">Open Are.na <span class="dropdown-shortcut">↗</span></div>
+              <div class="dropdown-item" data-action="borice">Open borice.exposed <span class="dropdown-shortcut">↗</span></div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-item" data-action="viewpalette">View Palette</div>
+              <div class="dropdown-item" data-action="alias">Make Alias... <span class="dropdown-shortcut">⌘M</span></div>
+              <div class="dropdown-item" data-action="print">Print Desktop... <span class="dropdown-shortcut">⌘P</span></div>
+            </div>
+          </div>
+
+          <div class="menubar-item" data-menu="edit">Edit
+            <div class="dropdown-menu">
+              <div class="dropdown-item disabled">Undo <span class="dropdown-shortcut">⌘Z</span></div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-item" data-action="wallpaper">Change Wallpaper</div>
+              <div class="dropdown-item" data-action="invert">Invert Colors</div>
+              <div class="dropdown-item" data-action="glitch">Glitch Screen <span class="dropdown-shortcut">⌘G</span></div>
+            </div>
+          </div>
+
+          <div class="menubar-item" data-menu="view">View
+            <div class="dropdown-menu">
+              <div class="dropdown-item" data-action="darkmode" id="darkmode-item"><span id="darkmode-label">Dark Mode</span><span class="dropdown-shortcut">⌘D</span></div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-item" data-action="zoomin">Zoom In <span class="dropdown-shortcut">⌘+</span></div>
+              <div class="dropdown-item" data-action="zoomout">Zoom Out <span class="dropdown-shortcut">⌘−</span></div>
+              <div class="dropdown-item" data-action="fullscreen">Full Screen <span class="dropdown-shortcut">⌘F</span></div>
+            </div>
+          </div>
+
+          <div class="menubar-item" data-menu="help">Help
+            <div class="dropdown-menu">
+              <div class="dropdown-item" data-action="about">About cybersolar.earth</div>
+              <div class="dropdown-item" data-action="whatisthis">What is CyberSolar?</div>
+              <div class="dropdown-divider"></div>
+              <div class="dropdown-item" data-action="viewsource">View Source... <span class="dropdown-shortcut">↗</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </header>
+
+    <div class="isp-content">
+      <div class="isp-title-row">
+        <img src="assets/img/misc/aim_sunglasses.jpg" alt="" aria-hidden="true" />
+        <h1 class="music-header">Let's Get Hacking</h1>
+      </div>
+      <div class="isp-byline">
+        <img class="isp-byline-pic" src="assets/img/film/stoputer.jpg" alt="stoic da poet" />
+        <p class="isp-subtitle">by stoic da poet </p>
+        <p class="isp-subtitle">A part of <a href="https://humanweek.org/" target="_blank" rel="noopener">Human Week</a>. </p>
+      </div>
+
+      <hr class="divider" />
+
+      <!-- <div class="isp-triptych">
+        <figure>
+          <div class="isp-triptych-img"><img src="assets/img/icons/solar2.jpeg" alt="solar panels" /></div>
+          <figcaption>explore</figcaption>
+        </figure>
+        <figure>
+          <div class="isp-triptych-img"><img src="assets/img/icons/imac.jpeg" alt="old computer" /></div>
+          <figcaption>discover</figcaption>
+        </figure>
+        <figure>
+          <div class="isp-triptych-img"><img src="assets/img/icons/turbine.jpeg" alt="wind turbine" /></div>
+          <figcaption>become</figcaption>
+        </figure>
+      </div> -->
+
+      <h1 class="hack-header">Hacking Tools</h1>
+
+      <div class="isp-section-label">💻 IDE or alternative</div>
+      <div class="isp-text">
+        <p><strong>Recommended:</strong> VS Code</p>
+        <p><strong>Also fine:</strong> Claude Code, Codex, Eclipse, Notepad++ (lol)</p>
+        <p>Don't have anything installed? Try one of these:</p>
+        <ul>
+          <li>Free online sandboxes (see below)</li>
+          <li>A Claude or ChatGPT account</li>
+          <li>A local or small LLM (coming soon)</li>
+          <li>TextEdit or Notepad</li>
+        </ul>
+
+        <h3 class="isp-subhead">Free online sandboxes</h3>
+        <ul>
+          <li><a href="https://jsfiddle.net/" target="_blank" rel="noopener">jsfiddle.net</a></li>
+          <li><a href="https://codepen.io/" target="_blank" rel="noopener">codepen.io</a></li>
+          <li><a href="https://coddy.tech/playground/html" target="_blank" rel="noopener">coddy.tech/playground/html</a></li>
+        </ul>
+
+        <h3 class="isp-subhead">AI native tools <small>(use at your own risk)</small></h3>
+        <ul>
+          <li><a href="https://aistudio.google.com/" target="_blank" rel="noopener">Google AI Studio</a></li>
+          <li><a href="https://bolt.new/" target="_blank" rel="noopener">bolt.new</a></li>
+        </ul>
+        <p><em>there's a billion so pick whatever you want…</em></p>
+      </div>
+
+      <div class="isp-section-label">🤖 AI tool usage or alternative</div>
+      <div class="isp-text">
+        <p><strong>Recommended:</strong> whatever you already use</p>
+        <p><strong>Top picks:</strong> Claude, Codex, Gemini</p>
+        <p class="isp-pov"><em>sto's POV:</em> I'm not going to police this from an activism standpoint against Big Tech. I'm an advocate for small, local LLM models, but I'm still experimenting with them myself. For now, these tools are free and incredibly good at almost anything, so use whatever you want.</p>
+      </div>
+
+      <div class="isp-section-label">✍️ AI prompts for small web</div>
+      <div class="isp-text prompt-list">
+        <p><a href="smallwebagent.html">smallwebagent.md</a> <em>(for agentic custom instructions)*</em></p>
+        <p style="padding-left: 5px; font-size: 10.5px; font-style: italic;">* These are formatted for GitHub Copilot. Refer to <a href="https://code.visualstudio.com/docs/agents/reference/custom-instructions-reference#_file-syntax" target="_blank">this VS Code documentation</a> on how other agentic systems may require instructions formats.</p>
+        <h4>sto's Pittsfield, MA Frutiger Aero Homepage prompt:</h4>
+        <p id="pittsfield-prompt">Using only HTML, CSS and vanilla JavaScript, make me an 'early internet' webpage to act as the digital home for the town of Pittsfield, MA. It should provide links to all important town services, such as garbage pickup schedules and 311 hotline, but also have "digital homepage" type features like a forum board, a "town square" space where users can view in livetime the other users on the page, and should feature information on the town's history, culture and politics. It should be informed by the frutiger aero aesthetic and have a textured background, using images that have been dithered or can be manually dithered by the user on the page at the click of a button. Lastly, it should support multiple styles that can be chosen by the user. One might focus on blues and greens while the other could be gray and orange, so and so forth - you decide the best 3-5 styles to include based on what you know about Pittsfield, MA and early web aesthetics.</p>
+      </div>
+
+      <div class="isp-section-label">🌐 free web hosting</div>
+      <div class="isp-text">
+        <p><strong>Recommended:</strong> <a href="https://docs.github.com/en/pages/quickstart" target="_blank" noreferrer> GitHub Pages</a></p>
+        <p><strong>Top picks:</strong></p>
+        <ul>
+          <li><a href="https://yay.boo" target="_blank" rel="noopener">yay.boo</a> <em></em></li>
+          <li><a href="https://yay.boo" target="_blank" rel="noopener">Netlify</a> <em></em></li>
+          <li><a href="https://yay.boo" target="_blank" rel="noopener">Vercel</a> <em></em></li>
+          <li><a href="https://yay.boo" target="_blank" rel="noopener">Cloudflare Pages</a> <em>(technically)</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal-overlay" id="about-modal" role="dialog" aria-modal="true" aria-label="About cybersolar.earth">
+      <div class="modal-window">
+        <div class="modal-titlebar">
+          <div class="modal-titlebar-text">
+            <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="" />
+            About cybersolar.earth
+          </div>
+          <div class="modal-close-btn" id="modal-close" aria-label="Close">✕</div>
+        </div>
+        <div class="modal-body">
+          <div class="modal-top-row">
+            <div class="modal-img-box">
+              <img src="assets/img/bkg/turbine_dsk.jpeg" alt="turbine background" />
+            </div>
+            <div class="modal-info">
+              <img class="modal-app-icon" src="assets/img/icons/earth.png" alt="cybersolar icon" />
+              <div class="modal-app-name">cybersolar.earth 1.0</div>
+            </div>
+          </div>
+          <hr class="modal-divider" />
+          <div class="modal-details">
+            <p>Built by:&nbsp; Bo Rice</p>
+            <p>Sections Live:&nbsp; 3</p>
+            <p>™ &amp; © cybersolar.earth, 2024-2026</p>
+          </div>
+          <hr class="modal-divider" />
+          <div class="modal-bars">
+            <div class="modal-bar-row">
+              <div class="modal-bar-label">
+                <img src="assets/img/icons/imac_nobkg.png" alt="" /> cyber
+              </div>
+              <div class="modal-bar-track"><div class="modal-bar-fill" style="width:75%"></div></div>
+            </div>
+            <div class="modal-bar-row">
+              <div class="modal-bar-label">
+                <img src="assets/img/icons/solar2.png" alt="" /> solar
+              </div>
+              <div class="modal-bar-track"><div class="modal-bar-fill" style="width:60%"></div></div>
+            </div>
+            <div class="modal-bar-row">
+              <div class="modal-bar-label">
+                <img src="assets/img/icons/turbine.jpeg" alt="" /> grass is greener
+              </div>
+              <div class="modal-bar-track"><div class="modal-bar-fill" style="width:45%"></div></div>
+            </div>
+          </div>
+          <div class="modal-ok-row">
+            <button class="modal-ok-btn" id="modal-ok">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast-msg" id="toast"></div>
+
+    <!-- Palette Modal -->
+    <div class="modal-overlay" id="palette-modal" role="dialog" aria-modal="true" aria-label="View Palette">
+      <div class="modal-window" style="width: min(600px, calc(100vw - 32px));">
+        <div class="modal-titlebar">
+          <div class="modal-titlebar-text">
+            <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="" />
+            palettes.html
+          </div>
+          <div class="modal-close-btn" id="palette-modal-close" aria-label="Close">✕</div>
+        </div>
+        <div style="padding: 0; line-height: 0;">
+          <iframe
+            src="palettes.html"
+            style="width: 100%; height: 420px; border: none; display: block; background: #fff;"
+            title="Palette"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- Help / What is CyberSolar Modal -->
+    <div class="modal-overlay" id="help-modal" role="dialog" aria-modal="true" aria-label="What is CyberSolar?">
+      <div class="modal-window">
+        <div class="modal-titlebar">
+          <div class="modal-titlebar-text">
+            <img class="menubar-title-img" src="assets/img/icons/earth.png" alt="" />
+            What is CyberSolar?
+          </div>
+          <div class="modal-close-btn" id="help-modal-close" aria-label="Close">✕</div>
+        </div>
+        <div class="modal-body">
+          <div class="modal-details">
+            <p><strong>CyberSolar; Grass is Greener</strong> is a music &amp; web-rooted multi-modal art project.</p>
+            <p>It explores the fringes of climate psychology, poetic tech, stoicism, and subversive community building.</p>
+            <p>Navigate the desktop icons to enter each channel. The site evolves daily.</p>
+          </div>
+          <hr class="modal-divider" />
+          <div class="modal-details" style="font-size:11px; color:#666;">
+            <p>File &nbsp;→&nbsp; social portals &amp; page export</p>
+            <p>Edit &nbsp;→&nbsp; mutate the canvas</p>
+            <p>View &nbsp;→&nbsp; alter perception</p>
+            <p>Help &nbsp;→&nbsp; you are here</p>
+          </div>
+          <div class="modal-ok-row">
+            <button class="modal-ok-btn" id="help-modal-ok">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // –– About Modal (page-specific handler) ––
+      document.getElementById('modal-close').addEventListener('click', () => {
+        document.getElementById('about-modal').classList.remove('open');
+      });
+      document.getElementById('modal-ok').addEventListener('click', () => {
+        document.getElementById('about-modal').classList.remove('open');
+      });
+      document.getElementById('about-modal').addEventListener('click', function(e) {
+        if (e.target === document.getElementById('about-modal')) {
+          document.getElementById('about-modal').classList.remove('open');
+        }
+      });
+
+      // –– Palette Modal ––
+      const paletteModal = document.getElementById('palette-modal');
+      document.getElementById('palette-modal-close').addEventListener('click', () => paletteModal.classList.remove('open'));
+      paletteModal.addEventListener('click', e => { if (e.target === paletteModal) paletteModal.classList.remove('open'); });
+
+      // –– Help Modal ––
+      const helpModal = document.getElementById('help-modal');
+      document.getElementById('help-modal-close').addEventListener('click', () => helpModal.classList.remove('open'));
+      document.getElementById('help-modal-ok').addEventListener('click', () => helpModal.classList.remove('open'));
+      helpModal.addEventListener('click', e => { if (e.target === helpModal) helpModal.classList.remove('open'); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') helpModal.classList.remove('open'); });
+
+    </script>
+  </body>
+</html>
