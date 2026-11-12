@@ -99,6 +99,13 @@
         padding: 28px 20px 100px;
         margin: 0 auto;
       }
+      .flyer-header {
+        margin: 15px 0;
+        width: 100%;
+      }
+      .flyer-header img {
+        max-width: 300px;
+      }
       .isp-title-row {
         display: flex;
         align-items: center;
@@ -805,6 +812,9 @@
     </header>
 
     <div class="isp-content">
+      <!-- <div class="flyer-header">
+        <img src="assets/img/misc/wwwhack-full.jpeg" alt="" aria-hidden="true" />
+      </div> -->
       <div class="isp-title-row">
         <!-- <img src="assets/img/misc/aim_sunglasses.jpg" alt="" aria-hidden="true" /> -->
         <h1 class="music-header">WWW: Using the Early Web, HTML & AI as Activism</h1>
@@ -882,6 +892,13 @@
         </li>
         <li>
           <img src="assets/img/icons/win98_links.png" alt="" />
+          <a href="https://www.are.na/stoic-da-poet/netw-rldz" target="_blank" rel="noopener">
+            sto's "netw🌐rldz" are.na channel
+            <small>all my fav finds</small>
+          </a>
+        </li>
+        <li>
+          <img src="assets/img/icons/win98_links.png" alt="" />
           <a href="links.html">
             cybersolar links
             <small>explore sto's universe</small>
@@ -892,8 +909,9 @@
       <!-- <div class="isp-section-label">📎 paste what you find</div> -->
       <div class="isp-section-label">📎 what we found</div>
       <div class="link-wall-box">
-        <p>Drop a site that you found on our web search!</p>
-        <form name="www-hack" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" id="link-form" class="link-form">
+        <p>All the sites we found:</p>
+        <!-- Netlify Forms submission is disabled. -->
+        <!-- <form name="www-hack" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" id="link-form" class="link-form">
           <input type="hidden" name="form-name" value="www-hack" />
           <p class="hidden-field">
             <label>Don't fill this out if you're human: <input name="bot-field" /></label>
@@ -901,7 +919,7 @@
           <input type="text" name="link" id="link-input" placeholder="paste a link or site name..." required />
           <input type="text" name="nickname" id="nick-input" placeholder="your name (optional)" maxlength="40" />
           <button type="submit" class="submit-btn">➕ add to the wall</button>
-        </form>
+        </form> -->
         <ul class="link-wall-list" id="link-wall-list">
           <li class="link-wall-empty" id="link-wall-empty">no links yet from this browser — be the first!</li>
         </ul>
